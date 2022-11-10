@@ -1,0 +1,75 @@
+/*img view form start */
+.image_view_ulasan {
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.img-view_ulasan .foto-view_ulasan {
+    border-radius: 50%;
+    z-index: 2;
+    transition: 0.5s;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/img/member/profile.png');
+    border: 4px solid #EEEEEE;
+}
+
+.img-view_ulasan .foto-view_ulasan:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.30);
+}
+
+/*img view form end */
+
+/*img edit form input start */
+.img-upload_ulasan {
+    position: relative;
+    overflow: hidden;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+}
+
+.img-upload_ulasan .foto-upload_ulasan {
+    border-radius: 50%;
+    z-index: 2;
+    width: 200px;
+    height: 200px;
+    transition: 0.5s;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/img/member/profile.png');
+    border: 4px solid #EEEEEE;
+    cursor: pointer;
+}
+
+.img-upload_ulasan .foto-upload_ulasan:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.30);
+    opacity: 50%;
+}
+
+.img-upload_ulasan .btn-input_ulasan input[type="file"] {
+    display: none;
+}
+
+.img-upload_ulasan .btn-input_ulasan {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: black;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.img-upload_ulasan .btn-input_ulasan {
+    font-size: 14px;
+    color: #ffffff;
+    padding: 45px 37px;
+    text-align: center;
+}
+
+/*img edit form input end */

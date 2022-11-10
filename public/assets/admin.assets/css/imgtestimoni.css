@@ -1,0 +1,75 @@
+/*img view form start */
+.image_view_testimoni {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5%;
+}
+
+.img-view_testimoni .foto-view_testimoni {
+    border-radius: 5%;
+    z-index: 2;
+    transition: 0.5s;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/img/member/profile.png');
+    border: 4px solid #EEEEEE;
+}
+
+.img-view_testimoni .foto-view_testimoni:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.30);
+}
+
+/*img view form end */
+
+/*img edit form input start */
+.img-upload_testimoni {
+    position: relative;
+    overflow: hidden;
+    width: 500px;
+    height: 280px;
+    border-radius: 5%;
+}
+
+.img-upload_testimoni .foto-upload_testimoni {
+    border-radius: 5%;
+    z-index: 2;
+    width: 500px;
+    height: 280px;
+    transition: 0.5s;
+    position: absolute;
+    background-position: center;
+    background-size: cover;
+    background-image: url('/assets/img/member/profile.png');
+    border: 4px solid #EEEEEE;
+    cursor: pointer;
+}
+
+.img-upload_testimoni .foto-upload_testimoni:hover {
+    -webkit-transform: scale(1.08);
+    transform: scale(1.30);
+    opacity: 50%;
+}
+
+.img-upload_testimoni .btn-input_testimoni input[type="file"] {
+    display: none;
+}
+
+.img-upload_testimoni .btn-input_testimoni {
+    width: 500px;
+    height: 280px;
+    border-radius: 5%;
+    background: black;
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.img-upload_testimoni .btn-input_testimoni {
+    font-size: 14px;
+    color: #ffffff;
+    padding: 60px 37px;
+    text-align: center;
+}
+
+/*img edit form input end */
