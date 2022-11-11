@@ -2,6 +2,7 @@
 @extends('layouts.userslayouts.navhome')
 @section('main', 'Kiano Travel')
 @section('title', 'Home')
+@section('home','current-menu-item')
 @section('content')
 
 

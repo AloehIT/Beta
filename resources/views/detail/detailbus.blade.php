@@ -124,9 +124,9 @@
                                                 width="150" class="img-fluid">
                                         </div>
                                         <div class="col-md-9 py-2">
-                                            <h2 class="p-0">{{ $detail->nama_brand }}</h2>
+                                            <h2 class="p-0">{{ $detail->nama_brand }}  <span
+                                                class="badge bg-primary">Promo</span></h2>
                                         </div>
-                                        <h4><span class="badge bg-primary">Promo</span></h4>
                                     </div>
                                     @endif
                                     @endif
@@ -205,9 +205,9 @@
                                         @else
                                         <span class="badge bg-success" style="font-size: 15px;">Promo</span>
                                         <span class="text-dark"
-                                            style="font-size: 23px;">@currency($detail->harga)</span><br>
+                                            style="font-size: 23px;">@currency($detail->harga_promo)</span><br>
                                         <span class="old-price"
-                                            style="font-size: 18px;">@currency($detail->harga_promo)</span>
+                                            style="font-size: 18px;">@currency($detail->harga)</span>
                                         @endif
                                     </p>
                                 </div>
@@ -221,7 +221,13 @@
                                         <form action="/add_cart" method="POST">
                                             @csrf
                                             <input type="hidden" name="id" value="{{$detail->kode_produk}}">
+                                            @if($detail->harga_promo == "")
                                             <input type="hidden" name="harga" value="{{$detail->harga}}">
+                                            @else
+                                            <input type="hidden" name="harga" value="{{$detail->harga_promo}}">
+                                            <input type="hidden" name="oldharga" value="{{$detail->harga}}">
+                                            @endif
+                                            
                                             <input type="hidden" name="type" value="bus">
                                             <button type="submit" class="btn btn-warning mt-3 col-12"><i class="fa-solid fa-cart-shopping"></i> {{ __('label.btnkeranjang') }}</button>
                                         </form>
@@ -238,9 +244,9 @@
                                             @else
                                             <span class="badge bg-success" style="font-size: 15px;">Promo</span>
                                             <span class="text-dark"
-                                                style="font-size: 23px;">@currency($detail->harga)</span><br>
+                                                style="font-size: 23px;">@currency($detail->harga_promo)</span><br>
                                             <span class="old-price"
-                                                style="font-size: 18px;">@currency($detail->harga_promo)</span>
+                                                style="font-size: 18px;">@currency($detail->harga)</span>
                                             @endif
                                         </p>
                                     </div>

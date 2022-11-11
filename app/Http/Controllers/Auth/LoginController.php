@@ -34,21 +34,17 @@ class LoginController extends Controller
             'username'=>'required',
             'password'=>'required',
         ]);
+        
 
 
         if (!auth()->attempt($request->only('username', 'password'), $request->remember)){
             Alert::error ( 'Failed' , 'The username or password you entered may be incorrect' );
-            return back();
+            return redirect()->route('login');
         }
 
         if($levels->role == 'admin') {
             Alert::success ( 'Success' , 'You have successfully logged in' );
             return redirect()->route('dashboard');
-        }
-
-        // elseif($levels->role == 'konten') {
-        //     // Alert :: success ( 'Success' , 'You have successfully logged in' );
-        //     return redirect()->route('dashboard');
-        // }   
+        } 
     }
 }

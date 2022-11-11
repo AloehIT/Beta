@@ -3,6 +3,7 @@
 @section('judul', 'Paket Tour')
 @section('title', 'Tour Package')
 @section('main', 'Kiano Travel')
+@section('tour','current-menu-item')
 @section('content')
 
 <main class="content">

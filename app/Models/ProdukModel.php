@@ -45,7 +45,7 @@ class ProdukModel extends Model
         ->join('subkategori', 'subkategori.subkategori', '=', 'tbl_produk.sub_kategori1',)
         ->orderBy('tbl_produk.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
-        ->paginate(9);
+        ->get();
     }
     
     public function hotel(){
@@ -55,7 +55,7 @@ class ProdukModel extends Model
         ->orderBy('tbl_produk.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
         ->where('tipe_produk', 'hotel')
-        ->paginate(9);
+        ->get();
     }
 
     public function pesawat(){
@@ -65,7 +65,7 @@ class ProdukModel extends Model
         ->orderBy('tbl_produk.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
         ->where('tipe_produk', 'pesawat')
-        ->paginate(9);
+        ->get();
     }
 
     public function kereta(){
@@ -75,7 +75,7 @@ class ProdukModel extends Model
         ->orderBy('tbl_produk.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
         ->where('tipe_produk', 'kereta')
-        ->paginate(9);
+        ->get();
     }
 
     public function bus(){
@@ -85,7 +85,7 @@ class ProdukModel extends Model
         ->orderBy('tbl_produk.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
         ->where('tipe_produk', 'bus')
-        ->paginate(9);
+        ->get();
     }
 
     public function rental() {
@@ -94,7 +94,7 @@ class ProdukModel extends Model
         ->join('subkategori', 'subkategori.subkategori', '=', 'tbl_rental.sub_kategori1',)
         ->orderBy('tbl_rental.created_at', 'DESC')
         ->orderBy(DB::raw('RAND()'))
-        ->paginate(9);
+        ->get();
     }
     //view data produk populer::END
 

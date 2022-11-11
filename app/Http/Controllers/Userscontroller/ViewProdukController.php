@@ -88,6 +88,8 @@ class ViewProdukController extends Controller
     }
 
 
+    
+
 
 
     public function hotel()
@@ -155,6 +157,8 @@ class ViewProdukController extends Controller
             return view('hotel', $data);
         }
     }
+
+
 
 
     
@@ -414,6 +418,8 @@ class ViewProdukController extends Controller
 
         return view('detail.detailkereta', $data);
     }
+
+
 
 
 

@@ -16,9 +16,9 @@
 
 </head>
 
-<body style="background: url('assets/apps.assets/content/about.png'); background-position: center; background-size: cover; background-repeat: no-repeat; height: 100vh;">
+<body>
     
-    <section class="ftco-section">
+    <section class="ftco-section" style="background: url('assets/apps.assets/content/about.png'); background-position: center; background-size: cover; background-repeat: no-repeat; height: 100vh;">
         <div class="container">
 
             <div class="row justify-content-center py-5">
@@ -35,51 +35,41 @@
                             </div> --}}
                         </div>
 
-                        <form method="POST" action="{{ route('getlogin') }}" id="login-form">
+                        <form method="POST" action="{{ route('getlogin') }}">
                             @csrf
-                            <div class="form-group">
+                            
+
+                            <div class="form-group mb-3">
                                 <label for="username">{{ __('Username') }}</label>
-                                <input type="text"
-                                    class="form-control{{ $errors->has('username') ? ' is-invalid' : '' }} boxed"
-                                    name="username" id="username" value="{{ old('username') }}" required autofocus autocomplete="off">
-                            </div>
-                            @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                            @endif
-
-                            <div class="form-group">
-                                <label for="password">{{ __('Password') }}</label>
-                                <div class="input-group">
-                                    <input type="password"
-                                        class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }} boxed"
-                                        name="password" id="password" required autocomplete="off">
-                                    <div class="input-group-append">
-                                        <span class="input-group-text" onclick="myFunction()">
-                                            <i class="fa fa-eye" id="openeye" style="display: none; color: gray;"></i>
-                                            <i class="fa fa-eye-slash" id="slasheye"
-                                                style="enable-background:new 0 0 98.48 98.481; color: gray;"></i>
-                                        </span>
+                                <input type="text" name="username" id="username" placeholder="Username"
+                                class="form-control @error('username') border-danger @enderror" value="{{ old('email') }}">
+            
+                                @error('username')
+                                    <div class="text-danger" style="font-size: 12px;">
+                                        {{ $message }}
                                     </div>
-                                </div>
+                                @enderror
                             </div>
 
-
-
-                            @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                            @endif
-
-                            <div class="form-group" style="margin-bottom: 0px; float:left;">
-                                @if (Route::has('password.request'))
-                                <a href="{{ route('password.request') }}" class="forgetpwd">
-                                    {{ __('Forgot Your Password?') }}
-                                </a>
-                                @endif
+                            @error('username')
+                            <div class="invalid-feedback">
+                                {{ $message }}
                             </div>
+                            @enderror
+
+
+                            <div class="form-group mb-3">
+                                <label for="password">Password</label>
+                                <input type="password" name="password" id="password" placeholder="Password"
+                                class="form-control @error('password') border-danger @enderror" value="">
+            
+                                @error('password')
+                                    <div class="text-danger" style="font-size: 12px;">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+            
 
                             <div class="form-group">
                                 <button type="submit"

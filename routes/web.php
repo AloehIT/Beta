@@ -46,24 +46,13 @@ use App\Http\Middleware\Lang;
 |
 */
 
-// if (file_exists(app_path('Http/Controllers/LocalizationController.php')))
-// {
-//     Route::get('lang/{locale}', [App\Http\Controllers\LocalizationController::class , 'lang']);
-// }
+
 Route::middleware([Lang::class])->group(
     function () {
-Route::get('/dashboard', function () {
-    if (Auth::user()) {
-        return redirect('/dashboard');
-    }
-
-    return view('auth.login');
-}); 
-
-Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
 //Halaman Produk
+Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produk-kami', [ViewProdukController::class, 'index'])->name('produk');
 Route::get('/produk-kami/hotel', [ViewProdukController::class, 'hotel'])->name('hotel');
 Route::get('/produk-kami/bus', [ViewProdukController::class, 'bus'])->name('bus');
@@ -122,6 +111,14 @@ Route::get('/keranjang', [KernajangController::class, 'index'])->name('keranjang
 
 
 //Halaman Users Admin
+Route::get('/dashboard', function () {
+    if (Auth::user()) {
+        return redirect('/dashboard');
+    }
+
+    return view('auth.login');
+}); 
+
 
 //auth access:START
 Route::get('/login', [LoginController::class, 'index'])->name('login');

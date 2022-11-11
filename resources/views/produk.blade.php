@@ -3,6 +3,7 @@
 @section('main', 'Kiano Travel')
 @section('title', 'Travel Products')
 @section('judul', 'Produk Travel')
+@section('produk','current-menu-item')
 @section('content')
 <link rel="stylesheet" href="{{ URL::to('assets/apps.assets/search.css') }}">
 <main class="content">

@@ -2,6 +2,7 @@
 @extends('layouts.userslayouts.navsub')
 @section('main', 'Kiano Travel')
 @section('title', 'Tentang Kami')
+@section('about','current-menu-item')
 @section('content')
 
 

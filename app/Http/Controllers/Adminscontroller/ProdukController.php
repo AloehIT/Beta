@@ -132,7 +132,7 @@ class ProdukController extends Controller
             'terminal2' => $request->terminal2,
             'ranting' => $request->ranting,
             'keterangan' => $request->keterangan,
-            'descreption' => $request->descreption,
+            'description' => $request->descreption,
             'fasilitas1' => $request->fasilitas1,
             'fasilitas2' => $request->fasilitas2,
             'fasilitas3' => $request->fasilitas3,

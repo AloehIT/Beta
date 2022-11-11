@@ -3,6 +3,7 @@
 @section('main', 'Kiano Travel')
 @section('title', 'Car Rental')
 @section('judul', 'Rental Mobil')
+@section('mobil','current-menu-item')
 @section('content')
 <link rel="stylesheet" href="{{ URL::to('assets/apps.assets/search.css') }}">
 <main class="content">

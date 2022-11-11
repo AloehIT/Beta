@@ -105,9 +105,5 @@
         @endif
         @endif
 
-
-        <div class="pagination-block mt-3">
-            {{ $produk->links('paginations.paginate') }}
-        </div>
     </div>
 </div>

@@ -47,13 +47,12 @@
             <nav class="main-navigation">
                 <button type="button" class="menu-toggle"><i class="fa fa-bars"></i></button>
                    <ul class="menu">
-                    <li class="menu-item"><a href="{{ route('home') }}">{{ __('menu.home')}}</a></li>
-                    <li class="menu-item"><a href="{{ route('tour') }}">{{ __('menu.tour_package')}}</a></li>
-                    <li class="menu-item"><a href="{{ route('produk') }}">{{ __('menu.tour_product')}}</a></li>
-                    <li class="menu-item"><a href="{{ route('mobil') }}">{{ __('menu.rent_car')}}</a></li>
-                    <li class="menu-item"><a href="{{ route('testimoni') }}">{{ __('menu.testimonial')}}</a></li>
-                    <li class="menu-item"><a href="{{ route('about') }}">{{ __('menu.about_us')}}</a></li>
-
+                    <li class="menu-item @yield('home')"><a href="{{ route('home') }}">{{ __('menu.home') }}</a></li>
+                    <li class="menu-item @yield('tour')"><a href="{{ route('tour') }}">{{ __('menu.tour_package') }}</a></li>
+                    <li class="menu-item @yield('produk')"><a href="{{ route('produk') }}">{{ __('menu.tour_product') }}</a></li>
+                    <li class="menu-item @yield('mobil')"><a href="{{ route('mobil') }}">{{ __('menu.rent_car') }}</a></li>
+                    <li class="menu-item @yield('testimoni')"><a href="{{ route('testimoni') }}">{{ __('menu.testimonial') }}</a></li>
+                    <li class="menu-item @yield('about')"><a href="{{ route('about') }}">{{ __('menu.about_us') }}</a></li>
                 </ul>
             </nav>
 

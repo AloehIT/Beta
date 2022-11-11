@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\keranjang;
 use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 use \DB;
 class cartController extends Controller
 {
@@ -27,17 +28,31 @@ class cartController extends Controller
             $session = session('id_cart');
         }
       
-        keranjang::insert([
+        $keranjang = keranjang::insert([
             'session'=>$session,
             'id_produk'=>$request->id,
             'harga'=> $request->harga,
+            'oldharga'=> $request->oldharga,
             'qty'=>1,
             'type'=>$request->type
         ]);
-        return redirect()->back();
+
+        if ($keranjang) {
+            Alert::success('Berhasil', 'Produk berhasil ditambahkan ke keranjang');
+            return redirect()->route('keranjang');
+        } else {
+            Alert::error('Gagal', 'Produk gagal ditambahkan ke keranjang');
+            return redirect()->back();
+        }
     }
     public function delete_cart(request $request){
-        keranjang::where('id',$request->id)->delete();
-        return redirect()->back();
+        $keranjang = keranjang::where('id',$request->id)->delete();
+        if ($keranjang) {
+            Alert::warning('Opps', 'Produk telah dihapus di keranjang anda');
+            return redirect()->back();
+        } else {
+            Alert::error('Gagal', 'Produk gagal dihapus di keranjang anda');
+            return redirect()->back();
+        }
     }
 }

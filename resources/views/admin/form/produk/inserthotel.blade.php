@@ -326,8 +326,8 @@
 
 
 
-    //Wilayah
-    $('#inprov').change(function(){
+   //Wilayah
+   $('#inprov').change(function(){
         var kab = $(this).val();    
 
         if(kab){
@@ -375,7 +375,7 @@
                         $("#inkec").append('<option>-- Pilih Kecamatan --</option>');
 
                         $.each(data,function(key, kec){
-                            $("#innkec").append('<option value="'+kec.kec+'">Kecamatan '+kec.kec+'</option>');
+                            $("#inkec").append('<option value="'+kec.kec+'">Kecamatan '+kec.kec+'</option>');
                         });
                     }else{
                         $("#inkec").empty();

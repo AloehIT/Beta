@@ -694,7 +694,13 @@
                                     <form action="/add_cart" method="POST">
                                         @csrf
                                         <input type="hidden" name="id" value="{{$detail->kode_paket}}">
+                                        @if($detail->harga_promo == "")
                                         <input type="hidden" name="harga" value="{{$detail->total_harga}}">
+                                        @else
+                                        <input type="hidden" name="harga" value="{{$detail->harga_promo}}">
+                                        <input type="hidden" name="oldharga" value="{{$detail->total_harga}}">
+                                        @endif
+
                                         <input type="hidden" name="type" value="paket">
                                         <button type="submit" class="btn btn-warning mt-3 col-12"><i
                                                 class="fa-solid fa-cart-shopping"></i> {{ __('tour.btnkeranjang') }}</button>
