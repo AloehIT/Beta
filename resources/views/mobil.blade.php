@@ -66,7 +66,7 @@
                             <div class="">
                                 @if(app()->getLocale()=='id')
                                 <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                                @elseif(app()->getLocale()=='en')
+                                @else
                                 <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                                 @endif
     
@@ -105,7 +105,7 @@
                                 </div>
     
     
-                                <div class="mb-2">
+                                {{-- <div class="mb-2">
                                     <label class="form-label text-dark">{{ __('label.wilayah')}}</label>
                                     <select class="form-control text-secondary text-capitalize" name="prov" id="prov"
                                         value="{{ request('prov') }}">
@@ -118,7 +118,7 @@
                                         @endif
                                         @endforeach
                                     </select>
-                                </div>
+                                </div> --}}
     
                                 <div class="mb-2">
                                     <select class="form-control text-secondary text-capitalize" name="kab" id="kab"
@@ -195,7 +195,7 @@
 
                             @if(app()->getLocale()=='id')
                             <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                             @endif
 
@@ -234,7 +234,7 @@
                             </div>
 
 
-                            <div class="mb-2">
+                            {{-- <div class="mb-2">
                                 <label class="form-label">{{ __('label.wilayah')}}</label>
                                 <select class="form-control text-secondary text-capitalize" name="prov" id="prov1"
                                     value="{{ request('prov') }}">
@@ -247,7 +247,7 @@
                                     @endif
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
 
                             <div class="mb-2">
                                 <select class="form-control text-secondary text-capitalize" name="kab" id="kab1"

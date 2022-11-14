@@ -13,12 +13,12 @@
                 <div class="card-body">
                     <div class="d-flex flex-row align-items-center">
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i
-                                    class="bi bi-geo-alt"></i> {!! Str::words($data->terminal1, 3, ' ...') !!} |
-                                Prov. {{ $data->keberangkatan }}</h6>
+                            <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;">
+                                <i class="fa-solid fa-plane"></i> {!! Str::words($data->terminal1, 4, ' ...') !!}
+                            </h6>
                             <div class="mt-2">
                                 <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">
-                                    {!! Str::words($data->nama_brand, 4,' ...') !!}</h4>
+                                    {!! Str::words($data->nama_brand, 2,' ...') !!}</h4>
 
                                 @include('admin.stars.stars')
 
@@ -26,7 +26,7 @@
                                     <div>
                                         <p class="mb-0" style="font-size: 12px;">{{ __('label.berangkat') }}</p>
                                         <p style="font-size: 13px;" class="text-capitalize"><i class="fa-solid fa-plane-departure"></i>
-                                            {{ $data->keberangkatan }}</p>
+                                            {!! Str::words($data->keberangkatan, 1,' ...') !!}</p>
                                     </div>
 
                                     <div class="mx-3 mt-2">
@@ -35,8 +35,8 @@
 
                                     <div>
                                         <p class="mb-0" style="font-size: 12px;">{{ __('label.tujuan') }}</p>
-                                        <p style="font-size: 13px;" class="text-capitalize"><i class="fa-solid fa-plane-arrival"></i> {{
-                                            $data->tujuan }}</p>
+                                        <p style="font-size: 13px;" class="text-capitalize">
+                                            <i class="fa-solid fa-plane-arrival"></i> {!! Str::words($data->tujuan, 1,' ...') !!}</p>
                                     </div>
                                 </div>
 
@@ -54,7 +54,7 @@
                                                 {!! Str::words($data->keterangan, 10,' ...') !!}
                                             </article>
                                         @endif
-                                    @elseif(app()->getLocale()=='en')
+                                    @else
                                         @if($data->description == "")
                                             <article class="text-dark mb-4 keterangan"
                                                 style=" font-size: 13px; text-align: left; line-height: 18px;">

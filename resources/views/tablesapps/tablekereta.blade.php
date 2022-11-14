@@ -13,12 +13,12 @@
                 <div class="card-body">
                     <div class="d-flex flex-row align-items-center">
                         <div class="ms-2 c-details">
-                            <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i
-                                    class="bi bi-geo-alt"></i> {!! Str::words($data->terminal1, 3, ' ...') !!} |
-                                Kab. {{ $data->keberangkatan }}</h6>
+                            <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;">
+                                <i class="fa-solid fa-train"></i> {!! Str::words($data->terminal1, 3, ' ...') !!} |
+                                {{ $data->keberangkatan }}</h6>
                             <div class="mt-2">
                                 <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">
-                                    {!! Str::words($data->nama_brand, 4,' ...') !!}</h4>
+                                    {!! Str::words($data->nama_brand, 2,' ...') !!}</h4>
 
                                 @include('admin.stars.stars')
 
@@ -54,7 +54,7 @@
                                                 {!! Str::words($data->keterangan, 10,' ...') !!}
                                             </article>
                                         @endif
-                                    @elseif(app()->getLocale()=='en')
+                                    @else
                                         @if($data->description == "")
                                             <article class="text-dark mb-4 keterangan"
                                                 style=" font-size: 13px; text-align: left; line-height: 18px;">

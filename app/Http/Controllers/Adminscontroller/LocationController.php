@@ -20,72 +20,86 @@ class LocationController extends Controller
     public function index()
     {
         $data = [
-            'prov' => $this->Location->prov(),
-            'kab' => $this->Location->kab(),
-            'kec' => $this->Location->kec(),
-            'location' => $this->Location->kec(),
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('admin.location', $data);
     }
 
     ////////////////////////////location Insert/////////////////////////////////
-    public function insertprov(Request $request)
+    public function insertnation(Request $request)
     {
-
-        $provensi = DB::table('master_prov')->insert([
-            'idprov' => $request->idprov,
-            'provinsi' => $request->prov,
-        ]);
-            
         
-        if($provensi){  
-            Alert::success('Berhasil', 'Provensi berhasil ditambahkan');      
+        $cek = DB::table('location')->where('nation', $request->nation)->first();
+        
+        if(!$cek){ 
+            DB::table('location')->insert([
+                'idnation' => $request->idnation,
+                'nation' => $request->nation,
+                'type' => $request->type,
+            ]);
+
+            Alert::success('Berhasil', 'Negara berhasil didaftarkan');      
+            return redirect()->back();
+        }elseif($cek){
+            Alert::warning('Opps', 'Negara sudah didaftarkan');
             return redirect()->back();
         }else{
-            Alert::error('Gagal', 'Provensi gagal ditambahkan');
+            Alert::error('Gagal', 'Negara gagal didaftarkan');
             return redirect()->back();
         }
     }
 
-    public function insertkab(Request $request)
+    public function insertdistrict(Request $request)
     {
-
-        $kabupaten = DB::table('master_kab')->insert([
-            'idkab' => $request->idkab,
-            'idprov' => $request->idprov,
-            'prov' => $request->prov,
-            'kab' => $request->kab,
-        ]);
-            
+        $cek = DB::table('district')->where('district', $request->district)->first();
         
-        if($kabupaten){  
-            Alert::success('Berhasil', 'Kabupaten berhasil ditambahkan');      
+        if(!$cek){  
+            DB::table('district')->insert([
+                'idnation' => $request->idnation,
+                'iddistrict' => $request->iddistrict,
+                'nation' => $request->nation,
+                'district' => $request->district,
+            ]);
+
+            Alert::success('Berhasil', 'Data provinsi berhasil didaftar');      
+            return redirect()->back();
+        }else if($cek){
+            Alert::warning('Opps', 'Data provinsi sudah didaftar');
             return redirect()->back();
         }else{
-            Alert::error('Gagal', 'Kabupaten gagal ditambahkan');
+            Alert::error('Gagal', 'Data provinsi gagal didaftar');
             return redirect()->back();
         }
     }
 
-    public function insertkec(Request $request)
+    public function insertsubdistrict(Request $request)
     {
-
-        $kecamatan = DB::table('master_kec')->insert([
-            'idprov' => $request->idprov,
-            'idkab' => $request->idkab,
-            'idkec' => $request->idkec,
-            'prov' => $request->prov,
-            'kab' => $request->kab,
-            'kec' => $request->kec,
-        ]);
+        $cek = DB::table('subdistrict')->where('subdistrict', $request->subdistrict)->first();
+        
             
         
-        if($kecamatan){  
-            Alert::success('Berhasil', 'Kecamatan berhasil ditambahkan');      
+        if(!$cek){  
+            DB::table('subdistrict')->insert([
+                'idnation' => $request->idnation,
+                'iddistrict' => $request->iddistrict,
+                'idsubdistrict' => $request->idsubdistrict,
+                'nation' => $request->nation,
+                'district' => $request->district,
+                'subdistrict' => $request->subdistrict,
+            ]);
+
+            Alert::success('Berhasil', 'Data daerah berhasil didaftar');      
             return redirect()->back();
-        }else{
-            Alert::error('Gagal', 'Kecamatan gagal ditambahkan');
+        }
+        else if($cek){
+            Alert::warning('Opps', 'Data daerah sudah didaftar');
+            return redirect()->back();
+        }
+        else{
+            Alert::error('Gagal', 'Data daerah gagal didaftar');
             return redirect()->back();
         }
     }
@@ -93,64 +107,78 @@ class LocationController extends Controller
 
 
     ////////////////////////////location update/////////////////////////////////
-    public function upprov(Request $request)
-    {
-        $provensi = DB::table('master_prov')->where('idprov', $request->idprov)->update([
-            'provinsi' => $request->prov,
-        ]);
-
-        $provensi = DB::table('master_kab')->where('idprov', $request->idprov)->update([
-            'prov' => $request->prov,
-        ]);
-
-        $provensi = DB::table('master_kec')->where('idprov', $request->idprov)->update([
-            'prov' => $request->prov,
-        ]);
-            
+    public function upnation(Request $request)
+    {    
+        $cek = DB::table('location')->where('nation', $request->nation)->first();
         
-        if($provensi){  
-            Alert::success('Berhasil', 'Provinsi berhasil diupdate');      
+        if(!$cek){  
+            DB::table('location')->where('idnation', $request->idnation)->update([
+                'nation' => $request->nation,
+            ]);
+    
+            DB::table('district')->where('idnation', $request->idnation)->update([
+                'nation' => $request->nation,
+            ]);
+    
+            DB::table('subdistrict')->where('idnation', $request->idnation)->update([
+                'nation' => $request->nation,
+            ]);
+
+            Alert::success('Berhasil', 'Data Negara berhasil diupdate');      
             return redirect()->back();
-        }else{
-            Alert::success('Berhasil', 'Provinsi berhasil diupdate');      
+        }
+        elseif($cek){
+            Alert::warning('Opps', 'Negara sudah didaftarkan');
+            return redirect()->back();
+        }
+        else{
+            Alert::error('Gagal', 'Data Negara gagal diupdate');      
             return redirect()->back();
         }
     }
 
+    public function updistrict(Request $request)
+    {  
+        $cek = DB::table('district')->where('district', $request->district)->first();
 
-    public function upkab(Request $request)
-    {
-        $kabupaten = DB::table('master_kab')->where('idkab', $request->idkab)->update([
-            'kab' => $request->kab,
-        ]);
+        if(!$cek){  
+            DB::table('district')->where('iddistrict', $request->iddistrict)->update([
+                'district' => $request->district,
+            ]);
+    
+            DB::table('subdistrict')->where('iddistrict', $request->iddistrict)->update([
+                'district' => $request->district,
+            ]);
 
-        $kabupaten = DB::table('master_kec')->where('idkab', $request->idkab)->update([
-            'kab' => $request->kab,
-        ]);
-            
-        
-        if($kabupaten){  
-            Alert::success('Berhasil', 'Kabupaten berhasil diupdate');      
+            Alert::success('Berhasil', 'Data provinsi berhasil diupdate');      
             return redirect()->back();
-        }else{
-            Alert::success('Berhasil', 'Kabupaten berhasil diupdate');      
+        }elseif($cek){
+            Alert::warning('Opps', 'Data provinsi sudah didaftarkan');
+            return redirect()->back();
+        }
+        else{
+            Alert::error('Gagal', 'Data provinsi gagal diupdate');      
             return redirect()->back();
         }
     }
 
-    public function upkec(Request $request)
+    public function upsubdistrict(Request $request)
     {
-
-        $kecamatan = DB::table('master_kec')->where('idkec', $request->idkec)->update([
-            'kec' => $request->kec,
-        ]);
-            
+        $cek = DB::table('subdistrict')->where('subdistrict', $request->subdistrict)->first();
         
-        if($kecamatan){  
-            Alert::success('Berhasil', 'Kecamatan berhasil diupdate');      
+        if(!$cek){  
+            DB::table('subdistrict')->where('idsubdistrict', $request->idsubdistrict)->update([
+                'subdistrict' => $request->subdistrict,
+            ]);
+
+            Alert::success('Berhasil', 'Data Daerah berhasil diupdate');      
             return redirect()->back();
-        }else{
-            Alert::success('Berhasil', 'Kecamatan berhasil diupdate');      
+        }elseif($cek){
+            Alert::warning('Opps', 'Data Daerah sudah didaftarkan');
+            return redirect()->back();
+        }
+        else{
+            Alert::error('Gagal', 'Data Daerah gagal diupdate');      
             return redirect()->back();
         }
     }
@@ -159,49 +187,49 @@ class LocationController extends Controller
 
 
     ////////////////////////////location Deleted/////////////////////////////////
-    public function delprov(Request $request)
+    public function delnation(Request $request)
     {  
-        $kab = DB::table('master_kab')->where('idprov',$request->idprov)->first();
-        $kec = DB::table('master_kec')->where('idprov',$request->idprov)->first();
+        $disc = DB::table('district')->where('idnation',$request->idnation)->first();
+        $subdis = DB::table('subdistrict')->where('idnation',$request->idnation)->first();
 
-        if(!$kab && !$kec)
+        if(!$disc && !$subdis)
         {
-            DB::table('master_prov')->where('idprov', $request->idprov)->delete();   
-            Alert::success('Berhasil', 'Provinsi berhasil dihapus'); 
+            DB::table('location')->where('idnation', $request->idnation)->delete();   
+            Alert::success('Berhasil', 'Negara berhasil dihapus'); 
             return back();
         }else{ 
-            Alert::warning('Oops', 'Provinsi memiliki data kabupaten dan kecamatan');
+            Alert::warning('Oops', 'Negara memiliki data Provinsi dan Kabupaten');
             return back();
         }
     }    
 
 
-    public function delkab(Request $request)
+    public function deldistrict(Request $request)
     {  
-        $kec = DB::table('master_kec')->where('idkab',$request->idkab)->first();
+        $subdistrict = DB::table('subdistrict')->where('iddistrict',$request->iddistrict)->first();
 
-        if(!$kec)
+        if(!$subdistrict)
         {
-            DB::table('master_kab')->where('idkab', $request->idkab)->delete();   
-            Alert::success('Berhasil', 'Kabupaten berhasil dihapus'); 
+            DB::table('district')->where('iddistrict', $request->iddistrict)->delete();   
+            Alert::success('Berhasil', 'Data provinsi berhasil dihapus'); 
             return back();
         }else{ 
-            Alert::warning('Oops', 'Kabupaten memiliki data kecamatan');
+            Alert::warning('Oops', 'Data provinsi memiliki data kabupaten');
             return back();
         }
     }    
 
 
-    public function delkec(Request $request)
+    public function delsubdistrict(Request $request)
     {  
-        $kec = DB::table('master_kec')->where('idkec', $request->idkec)->delete(); 
+        $subdistrict = DB::table('subdistrict')->where('idsubdistrict', $request->idsubdistrict)->delete(); 
 
-        if($kec)
+        if($subdistrict)
         {
-            Alert::success('Berhasil', 'Kabupaten berhasil dihapus'); 
+            Alert::success('Berhasil', 'Data daerah berhasil dihapus'); 
             return back();
         }else{ 
-            Alert::warning('Oops', 'Kabupaten memiliki data kecamatan');
+            Alert::error('Oops', 'Data daerah gagal dihapus');
             return back();
         }
     }    
@@ -213,10 +241,9 @@ class LocationController extends Controller
     {
 
         $data = [
-            'prov' => $this->Location->prov(),
-            'kab' => $this->Location->kab(),
-            'kec' => $this->Location->kec(),
-            'location' => $this->Location->kec(),
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -224,13 +251,13 @@ class LocationController extends Controller
 
             $search_all = $_GET['all'];
 
-            $prov = DB::table('master_prov')
-            ->where('provinsi','like',"%".$search_all."%")
+            $nation = DB::table('location')
+            ->where('nation','like',"%".$search_all."%")
             ->paginate(10);
 
 
-            $prov->appends($request->all());
-            return view('admin.location', ['prov' => $prov], $data);
+            $nation->appends($request->all());
+            return view('admin.location', ['nation' => $nation], $data);
         }else{
 
             return view('admin.location', $data);

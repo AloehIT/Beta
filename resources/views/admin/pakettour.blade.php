@@ -209,9 +209,14 @@
     });
 
     //send wilayah
-    $('.sendprov').on('change', function(){
-        const provinsi = $('.sendprov').val();
-        $('.prov').val(provinsi);
+    $('.sendwilayah').on('change', function(){
+        const wilayah = $('.sendwilayah').val();
+        $('.wilayah').val(wilayah);
+    });
+
+    $('.sendnation').on('change', function(){
+        const nation = $('.sendnation').val();
+        $('.nation').val(nation);
     });
 
 
@@ -250,7 +255,6 @@
      var idkat = $(this).data('idkat');
      var subkategori1 = $(this).data('sub1');
      var subkategori2 = $(this).data('sub2');
-     var wilayah = $(this).data('wilayah');
      var destinasi = $(this).data('destinasi');
      var rate = $(this).data('rate');
      //kategori
@@ -278,6 +282,8 @@
      //rental
      
     
+     var wilayah = $(this).data('wilayah');
+     var nation = $(this).data('nation');
   
 
 
@@ -312,6 +318,9 @@
 
      $(".modal-body #wilayah").val( wilayah );     
      $(".modal-body #beforewilayah").text( wilayah );
+
+     $(".modal-body #nation").val( nation );     
+     $(".modal-body #beforenation").text( nation );
 
      $(".modal-body #destinasi").val( destinasi );
      $(".modal-body #rate").val( rate );

@@ -16,16 +16,16 @@
 
 <?php
     $random =  mt_rand(1000, 9999);
-    $idprov = 'prov'.sprintf("%02s", $random).date('i').date('s');
+    $idnation = 'N'.sprintf("%02s", $random).date('i').date('s');
 
     $random =  mt_rand(1000, 9999);
-    $idkab = 'kab'.sprintf("%02s", $random).date('i').date('s');
+    $iddistrict = 'D'.sprintf("%02s", $random).date('i').date('s');
 
     $random =  mt_rand(1000, 9999);
-    $idkec = 'kec'.sprintf("%02s", $random).date('i').date('s');
+    $idsubdistrict = 'S'.sprintf("%02s", $random).date('i').date('s');
 ?>
 
-<main class="main-content position-relative border-radius-lg ">
+<main class="main-content position-relative border-radius-lg">
     <style>
         .location {
           overflow: auto;
@@ -98,9 +98,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers py-2">
-                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Provinsi</p>
+                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Negara</p>
                                     <h4 style="font-size: 23px; color: black;">
-                                        {{ $prov->count() }}
+                                        {{ $nation->count() }}
                                     </h4>
                                 </div>
                             </div>
@@ -121,9 +121,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers py-2">
-                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Kabupaten</p>
+                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Wilayah</p>
                                     <h4 style="font-size: 23px; color: black;">
-                                        {{ $kab->count() }}
+                                        {{ $district->count() }}
                                     </h4>
                                 </div>
                             </div>
@@ -143,9 +143,9 @@
                         <div class="row">
                             <div class="col-8">
                                 <div class="numbers py-2">
-                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Kecamatan</p>
+                                    <p class="mb-0 pt-2 pb-2 text-uppercase" style="font-size: 14px; font-weight: 600; color: #ADADAD;">Daerah</p>
                                     <h4 style="font-size: 23px; color: black;">
-                                        {{ $kec->count() }}
+                                        {{ $subdistrict->count() }}
                                     </h4>
                                 </div>
                             </div>
@@ -173,37 +173,12 @@
 
 
 
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-<!--------------------------------------------------------------Modal Form CRUD--------------------------------------------------------------->
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
 <!-- START::CRUD PROVINSI-->
-@include('admin.form.wilayah.crudprov')
+@include('admin.form.wilayah.crudnation')
 <!-- END::CRUD PROVINSI-->
 
-
-
-
-<!-- START::CRUD KECAMATAN-->
-@include('admin.form.wilayah.crudkab')
-<!-- END::CRUD KECAMATAN-->
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-<!--------------------------------------------------------------Modal Form CRUD--------------------------------------------------------------->
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-<!-------------------------------------------------------------Table Wilayah------------------------------------------------------------------>
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
 <!-- START::Table KABUPATEN-->
-@include('admin.table.tblkab')
+@include('admin.table.tbldistrict')
 <!-- END::Table KABUPATEN-->
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-<!-------------------------------------------------------------Table Wilayah------------------------------------------------------------------>
-<!-------------------------------------------------------------------------------------------------------------------------------------------->
-
-
-
-
 
 @endsection

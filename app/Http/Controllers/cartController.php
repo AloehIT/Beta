@@ -38,20 +38,20 @@ class cartController extends Controller
         ]);
 
         if ($keranjang) {
-            Alert::success('Berhasil', 'Produk berhasil ditambahkan ke keranjang');
+            Alert::success(trans('notif.berhasil'), trans('notif.label_berhasil'));
             return redirect()->route('keranjang');
         } else {
-            Alert::error('Gagal', 'Produk gagal ditambahkan ke keranjang');
+            Alert::error(trans('notif.gagal'), trans('notif.label_gagal1'));
             return redirect()->back();
         }
     }
     public function delete_cart(request $request){
         $keranjang = keranjang::where('id',$request->id)->delete();
         if ($keranjang) {
-            Alert::warning('Opps', 'Produk telah dihapus di keranjang anda');
+            Alert::warning(trans('notif.opps') , trans('notif.label_oops'));
             return redirect()->back();
         } else {
-            Alert::error('Gagal', 'Produk gagal dihapus di keranjang anda');
+            Alert::error(trans('notif.gagal'), trans('notif.label_gagal'));
             return redirect()->back();
         }
     }

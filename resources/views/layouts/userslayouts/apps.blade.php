@@ -26,6 +26,8 @@
         <link rel="shortcut icon" href="{{URL::to('assets/apps.assets/images/logo-footer.png')}}" height="30" >
         <link href="{{URL::to('assets/admin.assets/css/img.css')}}" rel="stylesheet" />
 		<script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+		<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
+
 		<style>
 			.preloader {
 				position: fixed;

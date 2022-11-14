@@ -31,7 +31,7 @@
                     <div class="slide-caption bg-transparent col-md-12 p-auto mb-0">
                         @if(app()->getLocale()=='id')
                         <p class="slide-title text-white text-center mb-0" style="font-weight: 800;">Testimoni</p>   
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         <p class="slide-title text-white text-center mb-0" style="font-weight: 800;">Testimonial</p>  
                         @endif
                         <p class="text-white text-center" style="font-size: 20px;">Kiano Wisata Tour</p>
@@ -62,7 +62,7 @@
                                 @else
                                     <h2 class="text-dark">{{ $data->judul }}</h2>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->title == "")
                                     <h2 class="text-dark">No title</h2>
                                 @else
@@ -78,7 +78,7 @@
                                 @else
                                     <article>{!! $data->keterangan !!}</article>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->description == "")
                                     <article>No content not found</article>
                                 @else
@@ -102,7 +102,7 @@
                         <div class="col-md-12">
                             @if(app()->getLocale()=='id')
                             <h2 class="text-dark">Belum ada judul</h2>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <h2 class="text-dark">No title</h2>
                             @endif
                         </div>
@@ -110,7 +110,7 @@
                         <div class="mb-3 col-md-12">
                             @if(app()->getLocale()=='id')
                             <article>Tidak konten tidak ditemukan</article>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <article>No content not found</article>
                             @endif
                         </div>
@@ -137,7 +137,7 @@
                                 @else
                                     <h2 class="text-dark">{{ $data->judul }}</h2>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->title == "")
                                     <h2 class="text-dark">No title</h2>
                                 @else
@@ -153,7 +153,7 @@
                                 @else
                                     <article>{!! $data->keterangan !!}</article>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->description == "")
                                     <article>No content not found</article>
                                 @else
@@ -175,7 +175,7 @@
                         <div class="col-md-12">
                             @if(app()->getLocale()=='id')
                             <h2 class="text-dark">Belum ada judul</h2>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <h2 class="text-dark">No title</h2>
                             @endif
                         </div>
@@ -183,7 +183,7 @@
                         <div class="mb-3 col-md-12">
                             @if(app()->getLocale()=='id')
                             <article>Tidak konten tidak ditemukan</article>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <article>No content not found</article>
                             @endif
                         </div>
@@ -207,7 +207,7 @@
                                 @else
                                     <h2 class="text-dark">{{ $data->judul }}</h2>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->title == "")
                                     <h2 class="text-dark">No title</h2>
                                 @else
@@ -223,7 +223,7 @@
                                 @else
                                     <article>{!! $data->keterangan !!}</article>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->description == "")
                                     <article>No content not found</article>
                                 @else
@@ -261,7 +261,7 @@
                                 @else
                                     <h2 class="text-dark">{{ $data->judul }}</h2>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->title == "")
                                     <h2 class="text-dark">No title</h2>
                                 @else
@@ -277,7 +277,7 @@
                                 @else
                                     <article>{!! $data->keterangan !!}</article>
                                 @endif
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 @if($data->description == "")
                                     <article>No content not found</article>
                                 @else
@@ -304,7 +304,7 @@
                         <div class="col-md-12 text-end">
                             @if(app()->getLocale()=='id')
                             <h2 class="text-dark">Belum ada judul</h2>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <h2 class="text-dark">No title</h2>
                             @endif
                         </div>
@@ -312,7 +312,7 @@
                         <div class="mb-3 col-md-12 text-end">
                             @if(app()->getLocale()=='id')
                             <article>Tidak konten tidak ditemukan</article>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <article>No content not found</article>
                             @endif
                         </div>
@@ -326,7 +326,7 @@
                         <div class="col-md-12 text-end">
                             @if(app()->getLocale()=='id')
                             <h2 class="text-dark">Belum ada judul</h2>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <h2 class="text-dark">No title</h2>
                             @endif
                         </div>
@@ -334,7 +334,7 @@
                         <div class="mb-3 col-md-12 text-end">
                             @if(app()->getLocale()=='id')
                             <article>Tidak konten tidak ditemukan</article>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <article>No content not found</article>
                             @endif
                         </div>
@@ -366,7 +366,7 @@
                 <p class="second-title mb-0">Kiano Travel</p>
                 @if(app()->getLocale()=='id')
                 <h3 class="text-secondary">Lihat lebih banyak di sosial media kami</h3>
-                @elseif(app()->getLocale()=='en')
+                @else
                 <h3 class="text-secondary">See more on our social media</h3>
                 @endif
             </div>
@@ -380,7 +380,7 @@
                         <div class="p-3">
                             @if(app()->getLocale()=='id')
                             <p class="mb-2" style="font-size: 25px;">Instagram Kami</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <p class="mb-2" style="font-size: 25px;">Our Instagram</p>
                             @endif
                             <p style="font-size: 15px;">Nama instagram</p>
@@ -394,7 +394,7 @@
                         <div class="p-3">
                             @if(app()->getLocale()=='id')
                             <p class="mb-2" style="font-size: 25px;">Facebook Kami</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <p class="mb-2" style="font-size: 25px;">Our Facebook</p>
                             @endif
                             <p style="font-size: 15px;">Nama instagram</p>
@@ -408,7 +408,7 @@
                         <div class="p-3">
                             @if(app()->getLocale()=='id')
                             <p class="mb-2" style="font-size: 25px;">Tiktok Kami</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <p class="mb-2" style="font-size: 25px;">Our Tiktok</p>
                             @endif
                             <p style="font-size: 15px;">Nama instagram</p>

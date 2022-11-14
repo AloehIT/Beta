@@ -267,9 +267,25 @@
                                         <div class="col-md-6 contact-form mt-0 px-4">
                                             <h3>{{ __('label.labeldesc') }}</h3>
                                             @if(app()->getLocale()=='id')
-                                            <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $detail->keterangan !!}</article>
-                                            @elseif(app()->getLocale()=='en')
-                                            <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $detail->description !!}</article>
+                                                @if($detail->keterangan == "")
+                                                    <article class="text-secondary bg-transparent"
+                                                    style="border: none; text-align: justify; margin: 0;" readonly>
+                                                    Maaf sepertinya admin tidak menambahkan informasai konten pada bagian ini.</article>
+                                                @else
+                                                    <article class="text-secondary bg-transparent"
+                                                    style="border: none; text-align: justify; margin: 0;" readonly>{!!
+                                                    $detail->keterangan !!}</article>
+                                                @endif
+                                            @else
+                                                @if($detail->description == "")
+                                                    <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>
+                                                        Sorry, it looks like the admin didn't add content information in this section
+                                                    </article>
+                                                @else
+                                                    <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>
+                                                        {!! $detail->description !!}
+                                                    </article>
+                                                @endif
                                             @endif
                                         </div>
 

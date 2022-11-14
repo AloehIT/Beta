@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 
 use App\Models\PaketTour;
 use App\Models\CategoryModel;
+use App\Models\WilayahModel;
 
 class PaketController extends Controller
 {
@@ -19,6 +20,7 @@ class PaketController extends Controller
         $this->middleware(['auth']);
         $this->Paket = new PaketTour();
         $this->Category = new CategoryModel();
+        $this->Location = new WilayahModel();  
     }
 
     //view paket tour page start
@@ -32,9 +34,9 @@ class PaketController extends Controller
             'subkategori1' => $this->Category->subkategori1(),
             'subkategori2' => $this->Category->subkategori2(),
 
-            'prov' => $this->Category->prov(),
-            'kab' => $this->Category->kab(),
-            'kec' => $this->Category->kec(),
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         $random1 =  mt_rand(1000, 9999);
@@ -114,6 +116,7 @@ class PaketController extends Controller
             'img4' => $img4,
             'img5' => $img5,
             'nama_paket' => $request->nama_paket,
+            'countries' => $request->countries,
             'wilayah' => $request->wilayah,
             'destinasi' => $request->destinasi,
             'kategori' => $request->kategori,
@@ -230,6 +233,7 @@ class PaketController extends Controller
                 'img4' => $img4,
                 'img5' => $img5,
                 'nama_paket' => $request->nama_paket,
+                'countries' => $request->countries,
                 'wilayah' => $request->wilayah,
                 'destinasi' => $request->destinasi,
                 'kategori' => $request->kategori,
@@ -251,6 +255,7 @@ class PaketController extends Controller
                 'id_hotel' => $request->id_hotel,
                 'id_rental' => $request->id_rental,
                 'nama_paket' => $request->nama_paket,
+                'countries' => $request->countries,
                 'wilayah' => $request->wilayah,
                 'destinasi' => $request->destinasi,
                 'kategori' => $request->kategori,

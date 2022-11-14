@@ -9,14 +9,14 @@ use Illuminate\Support\Facades\DB;
 use App\Models\ProdukModel;
 use App\Models\WilayahModel;
 use App\Models\CategoryModel;
-
+ 
 
 class ViewProdukController extends Controller
 {
     public function __construct()
     {
         $this->Produk = new ProdukModel(); 
-        $this->Wilayah = new WilayahModel(); 
+        $this->Location = new WilayahModel(); 
         $this->Category = new CategoryModel();
     }
 
@@ -26,85 +26,19 @@ class ViewProdukController extends Controller
     {
         $data = [
             //View another product in tourpage
-            "produk" => $this->Produk->produk(),
-            
-
-            //master data
-            'option' => DB::table('master_option')->get(),
-            'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
-            'kategori' => $this->Category->kategori(),
-            'subkategori' => $this->Category->subkategori(),
-        ];
-
-        return view('produk', $data);
-    }
-    public function searchall(Request $request)
-    {
-
-        $data = [
-            //View another product in tourpage
-            "produk" => $this->Produk->produk(),
-            
-
-            //master data
-            'option' => DB::table('master_option')->get(),
-            'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
-            'kategori' => $this->Category->kategori(),
-            'subkategori' => $this->Category->subkategori(),
-        ];
-
-
-        if (isset($_GET['all'])) {
-            
-
-            $search_all = $_GET['all'];
-
-            $produk = DB::table('tbl_produk')
-            ->join('tbl_kategori', 'tbl_kategori.id_kategori', '=', 'tbl_produk.kategori')
-            ->join('subkategori', 'subkategori.subkategori', '=', 'tbl_produk.sub_kategori1',)
-            ->orderBy('tbl_produk.created_at', 'DESC')
-            ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kec', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('keberangkatan', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tujuan', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
-            ->orderBy(DB::raw('RAND()'))
-            ->get();
-
-
-            return view('produk', ['produk' => $produk], $data);
-
-        }
-        else 
-        {
-            return view('produk', $data);
-        }
-    }
-
-
-    
-
-
-
-    public function hotel()
-    {
-        $data = [
-            //View another product in tourpage
             "produk" => $this->Produk->hotel(),
             
 
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('hotel', $data);
@@ -120,9 +54,12 @@ class ViewProdukController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -139,9 +76,9 @@ class ViewProdukController extends Controller
             ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
             ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kec', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.countries', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.district', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.subdistrict', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keberangkatan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tujuan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
@@ -172,9 +109,12 @@ class ViewProdukController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('bus', $data);
@@ -190,9 +130,12 @@ class ViewProdukController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -209,9 +152,9 @@ class ViewProdukController extends Controller
             ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
             ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kec', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.countries', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.district', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.subdistrict', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keberangkatan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tujuan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
@@ -236,13 +179,15 @@ class ViewProdukController extends Controller
             //View another product in tourpage
             "produk" => $this->Produk->kereta(),
             
-
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('kereta', $data);
@@ -254,13 +199,15 @@ class ViewProdukController extends Controller
             //View another product in tourpage
             "produk" => $this->Produk->kereta(),
             
-
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -277,9 +224,9 @@ class ViewProdukController extends Controller
             ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
             ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kec', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.countries', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.district', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.subdistrict', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keberangkatan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tujuan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
@@ -296,10 +243,11 @@ class ViewProdukController extends Controller
         }
     }
 
-
-
-
     
+
+
+
+
     public function pesawat()
     {
         $data = [
@@ -310,9 +258,13 @@ class ViewProdukController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('pesawat', $data);
@@ -328,9 +280,12 @@ class ViewProdukController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
+
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -347,9 +302,9 @@ class ViewProdukController extends Controller
             ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
             ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_produk.kec', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.countries', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.district', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_produk.subdistrict', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keberangkatan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tujuan', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
@@ -418,10 +373,6 @@ class ViewProdukController extends Controller
 
         return view('detail.detailkereta', $data);
     }
-
-
-
-
 
 
     

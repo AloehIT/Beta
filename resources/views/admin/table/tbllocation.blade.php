@@ -8,7 +8,7 @@
             </div>
             <div class="card-body pt-0 pb-2">
                 <div class="table-responsive p-0">
-                    @if ($prov->count() > 0)
+                    @if ($nation->count() > 0)
                         <table class="table align-items-center mb-5 table-striped">
                             <thead>
                                 <tr>
@@ -19,7 +19,7 @@
 
                                     <th
                                         class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
-                                        Provinsi
+                                        Negara
                                     </th>
 
                                     <th
@@ -38,7 +38,7 @@
                             <tbody>
                             
                                 <?php $no = 1 ?>
-                                @foreach($prov as $data)
+                                @foreach($nation as $data)
                                 <tr>
                                     <input type="hidden" class="delete_id" value="{{ $data->id }}">
                                     <td class="align-middle text-center text-sm col-1">
@@ -47,7 +47,7 @@
 
 
                                     <td class="align-middle text-center text-sm">
-                                        <span class="text-dark text-capitalize">Provensi {{ $data->provinsi }}</span>
+                                        <span class="text-dark text-capitalize">{{ $data->nation }}</span>
                                     </td>
 
                                     <td class="align-middle text-center">
@@ -56,19 +56,19 @@
                                     </td>
 
                                     <td>
-                                        <form action="{{ route('prov.destroy', $data->idprov) }}" method="POST">
+                                        <form action="{{ route('nation.destroy', $data->idnation) }}" method="POST">
                                             @csrf
                                             @method('delete')
 
                                             <a type="button" data-bs-toggle="modal"
-                                                data-bs-target="#tblkab{{ $data->idprov }}"
+                                                data-bs-target="#tbldistrict{{ $data->idnation }}"
                                                 class="pt-1 pb-1 px-2 text-dark"
                                                 style="border-radius: 5px; font-size: 13px; background: #FFFF00; font-weight: 800;"><i
                                                     class="bi bi-sort-down-alt"></i>
                                             </a>
 
 
-                                            <a data-bs-toggle="modal" data-prov1="{{$data->provinsi}}" data-idp1="{{$data->id}}" data-kodep1="{{$data->idprov}}" class="passProv">
+                                            <a data-bs-toggle="modal" data-nation1="{{$data->nation}}" data-idn1="{{$data->id}}" data-koden1="{{$data->idnation}}" class="passNation">
                                                 <button type="button" data-bs-toggle="modal" data-bs-target="#Myedit" class="pt-1 pb-1 px-2 text-white" style="border-radius: 5px; font-size: 12px; border: none; background:#1592E6;">
                                                     <i class="bi bi-pencil-fill"></i>
                                                 </button>
@@ -98,7 +98,7 @@
                     @endif
 
                     <div class="pagination-block mt-3">
-                        {{ $prov->links('paginations.paginate') }}
+                        {{ $nation->links('paginations.paginate') }}
                     </div>
                 </div>
             </div>

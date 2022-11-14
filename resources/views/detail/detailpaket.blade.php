@@ -30,34 +30,34 @@
                 <div class="container pt-5 pb-0">
                     <div id="productslider" class="carousel slider">
                         <div class="row">
-                            <div class="col-lg-5 col-md-6">
+                            <div class="col-lg-6 col-md-6">
                                 <div class="row pb-0">
                                     <div class="col-12">
                                         <div class="carousel-inner">
 
                                             <div class="carousel-item active zoom-image">
                                                 <img src="{{ asset('library/paket/'.$detail->img1) }}" class="img-fluid"
-                                                    alt="produk kiano travel" width="500" height="200">
+                                                    alt="produk kiano travel" width="800" height="500">
                                             </div>
 
                                             <div class="carousel-item zoom-image">
                                                 <img src="{{ asset('library/paket/'.$detail->img2) }}" class="img-fluid"
-                                                    alt="produk kiano travel" width="500" height="200">
+                                                    alt="produk kiano travel" width="800" height="500">
                                             </div>
 
                                             <div class="carousel-item zoom-image">
                                                 <img src="{{ asset('library/paket/'.$detail->img3) }}" class="img-fluid"
-                                                    alt="produk kiano travel" width="500" height="200">
+                                                    alt="produk kiano travel" width="800" height="500">
                                             </div>
 
                                             <div class="carousel-item zoom-image">
                                                 <img src="{{ asset('library/paket/'.$detail->img4) }}" class="img-fluid"
-                                                    alt="produk kiano travel" width="500" height="200">
+                                                    alt="produk kiano travel" width="800" height="500">
                                             </div>
 
                                             <div class="carousel-item zoom-image">
                                                 <img src="{{ asset('library/paket/'.$detail->img5) }}" class="img-fluid"
-                                                    alt="produk kiano travel" width="500" height="200">
+                                                    alt="produk kiano travel" width="800" height="500">
                                             </div>
 
                                         </div>
@@ -190,8 +190,8 @@
                                             style="border: none; text-align: justify; margin: 0;" readonly>{!!
                                             $detail->keterangan !!}</article>
                                         @endif
-                                    @elseif(app()->getLocale()=='en')
-                                        @if($detail->program == "")
+                                    @else
+                                        @if($detail->description == "")
                                             <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>
                                                 Sorry, it looks like the admin didn't add content information in this section
                                             </article>
@@ -248,7 +248,7 @@
                                                         {!! $detail->acara !!}
                                                     </article>
                                                 @endif
-                                            @elseif(app()->getLocale()=='en')
+                                            @else
                                                 @if($detail->program == "")
                                                     <article class="text-secondary bg-transparent"
                                                         style="border: none; text-align: justify; margin: 0;" readonly>
@@ -293,9 +293,8 @@
                                             </div>
                                         </div>
                                         @include('admin.stars.produkstars')
-                                        <p class="text-capitalize mb-0"><b>
-                                                {{__('label.prov')}} {{ $prd->prov }} | {{__('label.kab')}} {{ $prd->kab }} | {{__('label.kec')}} {{
-                                                $prd->kec }}</b>
+                                        <p class="text-capitalize mb-0">
+                                            <b>{{ $prd->countries }} | {{ $prd->district }} |  {{ $prd->subdistrict }}</b>
                                         </p>
                                         <p>{{ $prd->alamat }}</p>
 
@@ -355,7 +354,7 @@
                                                 @else
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $prd->keterangan !!}</article>
                                                 @endif
-                                            @elseif(app()->getLocale()=='en')
+                                            @else
                                                 @if($prd->description == "")
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>Sorry, it looks like the admin didn't add content information in this section</article>
                                                 @else
@@ -561,7 +560,7 @@
                                                 @else
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $prd->keterangan !!}</article>
                                                 @endif
-                                            @elseif(app()->getLocale()=='en')
+                                            @else
                                                 @if($prd->description == "")
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>Sorry, it looks like the admin didn't add content information in this section</article>
                                                 @else
@@ -624,7 +623,7 @@
                                                 @else
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $prd->keterangan !!}</article>
                                                 @endif
-                                            @elseif(app()->getLocale()=='en')
+                                            @else
                                                 @if($prd->description == "")
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>Sorry, it looks like the admin didn't add content information in this section</article>
                                                 @else

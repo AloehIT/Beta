@@ -13,11 +13,6 @@
 
             <!---------------menu produk content::start------------->
             <div class="mb-2">
-                <a href="{{ route('produk') }}" class="btn mb-1"
-                    style="background: white; border-bottom: none; box-shadow: 2px 0 2px 2px rgb(224, 224, 224);">
-                    <i class="fa-solid fa-ticket"></i> {{ __('label.semua') }}
-                </a>
-
                 <a href="{{ route('hotel') }}" class="btn mb-1"
                     style="background: white; border-bottom: none; box-shadow: 2px 0 2px 2px rgb(224, 224, 224);">
                     <i class="fa-solid fa-hotel"></i> {{ __('label.hotel') }}
@@ -95,7 +90,7 @@
                             <div class="card-body p-4">
                                 @if(app()->getLocale()=='id')
                                     <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                                @elseif(app()->getLocale()=='en')
+                                @else
                                     <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                                 @endif
 
@@ -134,7 +129,7 @@
                                     </select>
                                 </div>
     
-                                <div class="mb-2">
+                                {{-- <div class="mb-2">
                                     <label class="form-label text-dark">{{__('label.daerah')}}</label>
                                     <select class="form-control text-secondary text-capitalize" name="prov" id="prov"
                                         value="{{ request('prov') }}">
@@ -167,7 +162,7 @@
                                         value="{{ request('kab') }}">
                                         <option selected>{{__('label.tujuan')}}</option>
                                     </select>
-                                </div>
+                                </div> --}}
     
     
     
@@ -229,7 +224,7 @@
                         <div class="card-body p-4">
                             @if(app()->getLocale()=='id')
                                 <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                             @endif
 
@@ -269,7 +264,7 @@
                                 </select>
                             </div>
 
-                            <div class="mb-2">
+                            {{-- <div class="mb-2">
                                 <label class="form-label text-dark">{{__('label.daerah')}}</label>
                                 <select class="form-control text-secondary text-capitalize" name="prov" id="prov2"
                                     value="{{ request('prov') }}">
@@ -302,7 +297,7 @@
                                     value="{{ request('kab') }}">
                                     <option selected>{{__('label.tujuan')}}</option>
                                 </select>
-                            </div>
+                            </div> --}}
 
 
 

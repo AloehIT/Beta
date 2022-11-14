@@ -14,11 +14,16 @@
 
                 <li class="nav-item dropdown text-end dropleft">
                     <a class="nav-link dropdown-toggle dropdown-toggle-split" type="button" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                 {{ app()->getLocale() == null ? 'en' : app()->getLocale() }}
+                    {{ app()->getLocale() == null ? 'en' : app()->getLocale() }}
+                    @if(app()->getLocale()=='id')
+                    <i class="fi fi-id fis"></i>
+                    @else
+                    <i class="fi fi-gb fis"></i>
+                    @endif
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="{{ url()->current() }}?lang=id">ID</a></li>
-                        <li><a class="dropdown-item" href="{{ url()->current() }}?lang=en">EN</a></li>
+                        <li><a class="dropdown-item" href="{{ url()->current() }}?lang=id">ID <i class="fi fi-id fis"></i></a></li>
+                        <li><a class="dropdown-item" href="{{ url()->current() }}?lang=en">EN <i class="fi fi-gb fis"></i></a></li>
                     </ul>
                 </li>          
             </nav>
@@ -37,7 +42,7 @@
                         <h1 class="site-title"><a href="index.html">Kiano Wisata Tour</a></h1>
                         @if(app()->getLocale()=='id')
                             <small class="site-description">Jelajahi Negeri Bersama Kami</small>
-                        @elseif(app()->getLocale()=='en')
+                        @else
                             <small class="site-description">Explore the Country With Us</small>
                         @endif
                     </div>

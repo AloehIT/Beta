@@ -11,6 +11,7 @@ use Intervention\Image\Facades\Image;
 
 use App\Models\ProdukModel;
 use App\Models\CategoryModel;
+use App\Models\WilayahModel;
 
 class ProdukController extends Controller
 {
@@ -19,6 +20,7 @@ class ProdukController extends Controller
         $this->middleware(['auth']);
         $this->Produk = new ProdukModel();
         $this->Category = new CategoryModel();
+        $this->Location = new WilayahModel(); 
     }
 
     public function index()
@@ -32,9 +34,9 @@ class ProdukController extends Controller
             'subkategori1' => $this->Category->subkategori1(),
             'subkategori2' => $this->Category->subkategori2(),
 
-            'prov' => $this->Category->prov(),
-            'kab' => $this->Category->kab(),
-            'kec' => $this->Category->kec(),
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
         return view('admin.produk', $data);
@@ -115,9 +117,9 @@ class ProdukController extends Controller
             'img5' => $img5,
             'nama_brand' => $request->nama_brand,
             'tipe_produk' => $request->tipe_produk,
-            'prov' => $request->prov,
-            'kab' => $request->kab,
-            'kec' => $request->kec,
+            'countries' => $request->countries,
+            'district' => $request->district,
+            'subdistrict' => $request->subdistrict,
             'alamat' => $request->alamat,
             'kategori' => $request->kategori,
             'sub_kategori1' => $request->sub1,
@@ -252,9 +254,9 @@ class ProdukController extends Controller
                 'kode_produk' => $request->kode_produk,
                 'nama_brand' => $request->nama_brand,
                 'tipe_produk' => $request->tipe_produk,
-                'prov' => $request->prov,
-                'kab' => $request->kab,
-                'kec' => $request->kec,
+                'countries' => $request->countries,
+                'district' => $request->district,
+                'subdistrict' => $request->subdistrict,
                 'alamat' => $request->alamat,
                 'kategori' => $request->kategori,
                 'sub_kategori1' => $request->sub1,
@@ -282,9 +284,9 @@ class ProdukController extends Controller
                 'kode_produk' => $request->kode_produk,
                 'nama_brand' => $request->nama_brand,
                 'tipe_produk' => $request->tipe_produk,
-                'prov' => $request->prov,
-                'kab' => $request->kab,
-                'kec' => $request->kec,
+                'countries' => $request->countries,
+                'district' => $request->district,
+                'subdistrict' => $request->subdistrict,
                 'alamat' => $request->alamat,
                 'kategori' => $request->kategori,
                 'sub_kategori1' => $request->sub1,

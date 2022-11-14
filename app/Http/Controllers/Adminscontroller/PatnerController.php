@@ -45,7 +45,6 @@ class PatnerController extends Controller
 
         $patner = DB::table('tbl_patner')->insert([
             'nama_patner' => $request->nama_patner,
-            'deskripsi' => $request->deskripsi,
             'links' => $request->links,
             'img_patner' => $imgaeName,
         ]);

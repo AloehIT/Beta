@@ -10,6 +10,7 @@ use RealRashid\SweetAlert\Facades\Alert;
 
 use App\Models\MobilModel;
 use App\Models\CategoryModel;
+use App\Models\WilayahModel;
 
 class RentalController extends Controller
 {
@@ -18,6 +19,7 @@ class RentalController extends Controller
         $this->middleware(['auth']);
         $this->Mobil = new MobilModel;
         $this->Category = new CategoryModel();
+        $this->Location = new WilayahModel(); 
     }
 
     //view mobil page start
@@ -30,9 +32,9 @@ class RentalController extends Controller
             'subkategori2' => $this->Mobil->subkategori2(),
             'tipe_kendaraan' => DB::table('tipe_kendaraan')->get(),
 
-            'prov' => $this->Category->prov(),
-            'kab' => $this->Category->kab(),
-            'kec' => $this->Category->kec(),
+            'nation' => $this->Location->nation(),
+            'district' => $this->Location->district(),
+            'subdistrict' => $this->Location->subdistrict(),
         ];
 
 
@@ -122,9 +124,9 @@ class RentalController extends Controller
             'nama_brand' => $request->nama_brand,
             'tipe_produk' => $request->tipe_produk,
             'tipe_kendaraan' => $request->tipe_kendaraan,
-            'prov' => $request->prov,
-            'kab' => $request->kab,
-            'kec' => $request->kec,
+            'countries' => $request->countries,
+            'district' => $request->district,
+            'subdistrict' => $request->subdistrict,
             'alamat' => $request->alamat,
             'kategori' => $request->kategori,
             'sub_kategori1' => $request->sub1,
@@ -251,9 +253,9 @@ class RentalController extends Controller
                 'nama_brand' => $request->nama_brand,
                 'tipe_produk' => $request->tipe_produk,
                 'tipe_kendaraan' => $request->tipe_kendaraan,
-                'prov' => $request->prov,
-                'kab' => $request->kab,
-                'kec' => $request->kec,
+                'countries' => $request->countries,
+                'district' => $request->district,
+                'subdistrict' => $request->subdistrict,
                 'alamat' => $request->alamat,
                 'kategori' => $request->kategori,
                 'sub_kategori1' => $request->sub1,
@@ -273,9 +275,9 @@ class RentalController extends Controller
                 'nama_brand' => $request->nama_brand,
                 'tipe_produk' => $request->tipe_produk,
                 'tipe_kendaraan' => $request->tipe_kendaraan,
-                'prov' => $request->prov,
-                'kab' => $request->kab,
-                'kec' => $request->kec,
+                'countries' => $request->countries,
+                'district' => $request->district,
+                'subdistrict' => $request->subdistrict,
                 'alamat' => $request->alamat,
                 'kategori' => $request->kategori,
                 'sub_kategori1' => $request->sub1,
@@ -297,6 +299,9 @@ class RentalController extends Controller
         } 
         elseif(!$produk){
             Alert::warning('Oops', 'Tidak terjadi perubaha pada produk');
+            return redirect()->back();
+        }else{
+            Alert::error('Gagal', 'Perubaha produk gagal diupdate');
             return redirect()->back();
         }
         
@@ -325,8 +330,5 @@ class RentalController extends Controller
         }
     }
     ////////////////////////////Produk Insert///////////////////////////////////
-
-
-
     
 }

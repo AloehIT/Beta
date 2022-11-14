@@ -16,7 +16,7 @@ class ViewRentalController extends Controller
     public function __construct()
     {
         $this->Produk = new ProdukModel(); 
-        $this->Wilayah = new WilayahModel(); 
+        $this->Location = new WilayahModel(); 
         $this->Category = new CategoryModel();
     }
 
@@ -29,7 +29,6 @@ class ViewRentalController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
         ];
@@ -46,7 +45,6 @@ class ViewRentalController extends Controller
             //master data
             'option' => DB::table('master_option')->get(),
             'ranting' => DB::table('ranting')->get(),
-            'provinsi' => $this->Wilayah->prov(),
             'kategori' => $this->Category->kategori(),
             'subkategori' => $this->Category->subkategori(),
         ];
@@ -63,9 +61,9 @@ class ViewRentalController extends Controller
             ->where('nama_brand', 'LIKE', '%' . $search_all . '%')
             ->orWhere('tipe_produk', 'LIKE', '%' . $search_all . '%')
             ->orWhere('alamat', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_rental.prov', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_rental.kab', 'LIKE', '%' . $search_all . '%')
-            ->orWhere('tbl_rental.kec', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_rental.countries', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_rental.district', 'LIKE', '%' . $search_all . '%')
+            ->orWhere('tbl_rental.subdistrict', 'LIKE', '%' . $search_all . '%')
             ->orWhere('keterangan', 'LIKE', '%' . $search_all . '%')
             ->orderBy(DB::raw('RAND()'))
             ->get();

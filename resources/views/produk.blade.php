@@ -97,7 +97,7 @@
                             <div class="card-body p-4">
                                 @if(app()->getLocale()=='id')
                                 <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                                @elseif(app()->getLocale()=='en')
+                                @else
                                 <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                                 @endif
 
@@ -224,7 +224,7 @@
                         <div class="card-body p-4">
                             @if(app()->getLocale()=='id')
                             <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                             <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                             @endif
                             

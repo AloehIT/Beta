@@ -14,10 +14,10 @@
                     <div class="d-flex flex-row align-items-center">
                         <div class="ms-2 c-details">
                             <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i
-                                    class="bi bi-geo-alt"></i>{{ $data->prov }} | {{ $data->kab }}</h6>
+                                    class="bi bi-geo-alt"></i> {{ $data->countries }} | {{ $data->district }}</h6>
                             <div class="mt-2">
                                 <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">
-                                    {!! Str::words($data->nama_brand, 4,' ...') !!}</h4>
+                                    {!! Str::words($data->nama_brand, 2,' ...') !!}</h4>
 
                                 @include('admin.stars.stars')
 

@@ -54,7 +54,7 @@ Route::middleware([Lang::class])->group(
 //Halaman Produk
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/produk-kami', [ViewProdukController::class, 'index'])->name('produk');
-Route::get('/produk-kami/hotel', [ViewProdukController::class, 'hotel'])->name('hotel');
+Route::get('/produk-kami/hotel', [ViewProdukController::class, 'index'])->name('hotel');
 Route::get('/produk-kami/bus', [ViewProdukController::class, 'bus'])->name('bus');
 Route::get('/produk-kami/kereta', [ViewProdukController::class, 'kereta'])->name('kereta');
 Route::get('/produk-kami/pesawat', [ViewProdukController::class, 'pesawat'])->name('pesawat');
@@ -85,6 +85,7 @@ Route::get('/rental-kami/detail/{kode_produk}', [ViewRentalController::class, 'd
 Route::get('/tour-kami', [ViewTourController::class, 'index'])->name('tour');
 Route::get('/tour-kami/detail/{kode_paket}', [ViewTourController::class, 'detail'])->name('detail.paket');
 Route::get('/tour-kami/tour/search', [ViewTourController::class, 'searchall'])->name('search.paket');
+Route::get('/tour-kami/tour/filter', [ViewTourController::class, 'filter'])->name('filter.paket');
 
 
 
@@ -158,20 +159,20 @@ Route::get('/location/search', [LocationController::class, 'search'])->name('sea
 //CRUD Location::START
 
 //insert
-Route::post('/location/insertprov', [LocationController::class, 'insertprov'])->name('insert.provensi');
-Route::post('/location/insertkab', [LocationController::class, 'insertkab'])->name('insert.kabupaten');
-Route::post('/location/insertkec', [LocationController::class, 'insertkec'])->name('insert.kecamatan');
+Route::post('/location/insertnation', [LocationController::class, 'insertnation'])->name('insert.nation');
+Route::post('/location/insertdistrict', [LocationController::class, 'insertdistrict'])->name('insert.district');
+Route::post('/location/insertsubdistrict', [LocationController::class, 'insertsubdistrict'])->name('insert.subdistrict');
 
 //update
-Route::post('/location/updateprov', [LocationController::class, 'upprov'])->name('update.provensi');
-Route::post('/location/updatekab', [LocationController::class, 'upkab'])->name('update.kabupaten');
-Route::post('/location/updatekec', [LocationController::class, 'upkec'])->name('update.kecamatan');
+Route::post('/location/updatenation', [LocationController::class, 'upenation'])->name('update.nation');
+Route::post('/location/updatedistrict', [LocationController::class, 'updistrict'])->name('update.district');
+Route::post('/location/upsubdistrict', [LocationController::class, 'upsubdistrict'])->name('update.subdistrict');
 
 
 //deleted
-Route::delete('/delprov/{idprov}', [LocationController::class, 'delprov'])->name('prov.destroy');
-Route::delete('/delkab/{idkab}', [LocationController::class, 'delkab'])->name('kab.destroy');
-Route::delete('/delkec/{idkec}', [LocationController::class, 'delkec'])->name('kec.destroy');
+Route::delete('/delnation/{idnation}', [LocationController::class, 'delnation'])->name('nation.destroy');
+Route::delete('/deldistrict/{iddistrict}', [LocationController::class, 'deldistrict'])->name('district.destroy');
+Route::delete('/delsubdistrict/{idsubdistrict}', [LocationController::class, 'delsubdistrict'])->name('subdistrict.destroy');
 //CRUD Location::END
 
 
@@ -262,32 +263,37 @@ Route::get('/getData2/{id_kategori}', function ($id_kategori) {
     return response()->json($subkategori2);
 })->name('getData2');
 
-Route::get('/getProv/{prov}', function ($prov) {
-    $kab = DB::table('master_kab')->where('prov', $prov)->get();
-    return response()->json($kab);
-})->name('getProv');
+Route::get('/getNegara/{nation}', function ($nation) {
+    $district = DB::table('district')->where('nation', $nation)->get();
+    return response()->json($district);
+})->name('getNegara');
 
-Route::get('/getKab/{kab}', function ($kab) {
-    $kec = DB::table('master_kec')->where('kab', $kab)->get();
-    return response()->json($kec);
-})->name('getKab');
+Route::get('/getWilayah/{district}', function ($district) {
+    $subdistrict = DB::table('subdistrict')->where('district', $district)->get();
+    return response()->json($subdistrict);
+})->name('getWilayah');
+
+
 
 
 //paket
-Route::get('/getHotel/{prov}', function ($prov) {
-    $hotel = DB::table('tbl_produk')->where('prov', $prov)->where('tipe_produk', 'hotel')->get();
+Route::get('/getHotel/{district}', function ($district) {
+    $hotel = DB::table('tbl_produk')->where('district', $district)->where('tipe_produk', 'hotel')->get();
     return response()->json($hotel);
 })->name('getHotel');
 
-Route::get('/getTransport/{prov}', function ($prov) {
-    $transport = DB::table('tbl_produk')->where('tujuan', $prov)->where('tipe_produk', 'pesawat')->orWhere('tipe_produk', 'kereta')->orWhere('tipe_produk', 'bus')->get();
+Route::get('/getTransport/{district}', function ($district) {
+    $transport = DB::table('tbl_produk')->where('tujuan',  'LIKE', '%' . $district . '%')->orWhere('tipe_produk', 'pesawat')->orWhere('tipe_produk', 'kereta')->orWhere('tipe_produk', 'bus')->get();
     return response()->json($transport);
 })->name('getTransport');
 
-Route::get('/getKendaraan/{prov}', function ($prov) {
-    $kendaraan = DB::table('tbl_rental')->where('prov', $prov)->get();
+Route::get('/getKendaraan/{district}', function ($district) {
+    $kendaraan = DB::table('tbl_rental')->where('district', $district)->get();
     return response()->json($kendaraan);
 })->name('getKendaraan');
+
+
+
 
 
 
@@ -303,8 +309,6 @@ Route::get('/getRental/{kode_produk}', function ($kode_produk) {
     return response()->json($rental);
 })->name('getRental');
 //paket
-
-
 
 Route::post('/search',function(request $request){
     $kategori = DB::table('tbl_produk')->where('kategori', $request->kategori)->get();

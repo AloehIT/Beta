@@ -12,11 +12,6 @@
 
             <!---------------menu produk content::start------------->
             <div class="mb-2">
-                <a href="{{ route('produk') }}" class="btn mb-1"
-                    style="background: white; border-bottom: none; box-shadow: 2px 0 2px 2px rgb(224, 224, 224);">
-                    <i class="fa-solid fa-ticket"></i> {{ __('label.semua') }}
-                </a>
-
                 <a href="{{ route('hotel') }}" class="btn mb-1 text-white"
                     style="background: rgb(0, 166, 255); border-bottom: none; box-shadow: 2px 0 2px 2px rgb(224, 224, 224);">
                     <i class="fa-solid fa-hotel"></i> {{ __('label.hotel') }}
@@ -93,7 +88,7 @@
                             <div class="card-body p-4">
                                 @if(app()->getLocale()=='id')
                                 <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                                @elseif(app()->getLocale()=='en')
+                                @else
                                 <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                                 @endif
 
@@ -136,11 +131,11 @@
                                     <select class="form-control text-secondary text-capitalize" name="prov" id="prov1"
                                         value="{{ request('prov') }}">
                                         <option selected>{{ __('label.prov') }}</option>
-                                        @foreach($provinsi as $item)
-                                        @if(request('prov') == $item->provinsi)
-                                        <option value="{{ $item->provinsi }}" selected>{{ $item->provinsi }}</option>
+                                        @foreach($nation as $item)
+                                        @if(request('prov') == $item->nation)
+                                        <option value="{{ $item->nation }}" selected>{{ $item->nation }}</option>
                                         @else
-                                        <option value="{{ $item->provinsi }}">{{ $item->provinsi }}</option>
+                                        <option value="{{ $item->nation }}">{{ $item->nation }}</option>
                                         @endif
                                         @endforeach
                                     </select>
@@ -217,7 +212,7 @@
                         <div class="card-body p-4">
                             @if(app()->getLocale()=='id')
                                 <p style="font-weight: 600; font-size: 18px;">Filter Lainnya</p>
-                            @elseif(app()->getLocale()=='en')
+                            @else
                                 <p style="font-weight: 600; font-size: 18px;">More Filters</p>
                             @endif
 
@@ -260,11 +255,11 @@
                                 <select class="form-control text-secondary text-capitalize" name="prov" id="prov"
                                     value="{{ request('prov') }}">
                                     <option selected>{{ __('label.prov') }}</option>
-                                    @foreach($provinsi as $item)
-                                    @if(request('prov') == $item->provinsi)
-                                    <option value="{{ $item->provinsi }}" selected>{{ $item->provinsi }}</option>
+                                    @foreach($nation as $item)
+                                    @if(request('prov') == $item->nation)
+                                    <option value="{{ $item->nation }}" selected>{{ $item->nation }}</option>
                                     @else
-                                    <option value="{{ $item->provinsi }}">{{ $item->provinsi }}</option>
+                                    <option value="{{ $item->nation }}">{{ $item->nation }}</option>
                                     @endif
                                     @endforeach
                                 </select>

@@ -64,7 +64,7 @@
                                         <a data-bs-toggle="modal" data-kode="{{$data->kode_paket}}" data-namapaket="{{$data->nama_paket}}" 
                                             data-img1="{{$data->img1}}" data-img2="{{$data->img2}}" data-img3="{{$data->img3}}" 
                                             data-img4="{{$data->img4}}" data-img5="{{$data->img5}}" data-kategori="{{$data->nama_kategori}}" data-idkat="{{$data->id_kategori}}" 
-                                            data-sub1="{{$data->sub_kategori1}}" data-sub2="{{$data->sub_kategori2}}" data-wilayah="{{$data->wilayah}}"
+                                            data-sub1="{{$data->sub_kategori1}}" data-sub2="{{$data->sub_kategori2}}" data-wilayah="{{$data->wilayah}}" data-nation="{{$data->countries}}"
                                             data-rate="{{$data->ranting}}" data-destinasi="{{$data->destinasi}}" data-keterangan="{{$data->keterangan}}"
                                             data-description="{{$data->description}}" data-hari="{{$data->hari}}" data-acara="{{$data->acara}}" 
                                             data-program="{{$data->program}}" data-total="{{$data->total_harga}}" data-promo="{{$data->harga_promo}}"

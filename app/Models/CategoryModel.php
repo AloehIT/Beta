@@ -31,17 +31,4 @@ class CategoryModel extends Model
     public function subkategori2() {
         return DB::table('subkategori')->where('sub', 'sub-kategori2')->get();
     }
-
-
-    public function prov() {
-        return DB::table('master_prov')->get();
-    }
-
-    public function kab() {
-        return DB::table('master_kab')->get();
-    }
-
-    public function kec() {
-        return DB::table('master_kec')->get();
-    }
 }

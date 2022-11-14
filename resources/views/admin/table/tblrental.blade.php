@@ -31,7 +31,7 @@
                     <div class="d-flex flex-row align-items-center">
                         <div class="ms-2 c-details">
                             <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i
-                                class="bi bi-geo-alt"></i>{{ $data->prov }} | {{ $data->kab }}</h6>
+                                class="bi bi-geo-alt"></i>{{ $data->countries }} | {{ $data->district }}</h6>
                             <div class="mt-2">
                                 <h4 class="mb-0 heading col-12 text-dark text-capitalize" style="font-size: 15px;">{!!
                                     Str::words($data->nama_brand, ' ...') !!}</h4>
@@ -75,17 +75,18 @@
                         <form action="{{ route('rental.destroy', $data->kode_produk) }}" method="POST">
                             @csrf
                             @method('delete')
-                            <a data-bs-toggle="modal" data-kodeh="{{ $data->kode_produk }}"
-                                data-logoh="{{ $data->logo }}" data-img1h="{{ $data->img1 }}"
-                                data-img2h="{{ $data->img2 }}" data-img3h="{{ $data->img3 }}"
-                                data-img4h="{{ $data->img4 }}" data-img5h="{{ $data->img5 }}"
-                                data-brandh="{{ $data->nama_brand }}" data-tipe="{{ $data->tipe_kendaraan }}" data-alamath="{{ $data->alamat }}"
-                                data-provh="{{ $data->prov }}" data-kabh="{{ $data->kab }}" data-kech="{{ $data->kec }}"
-                                data-kategorih="{{ $data->nama_kategori }}" data-idkat="{{ $data->id_kategori }}" data-subkategori1h="{{ $data->sub_kategori1 }}"
-                                data-subkategori2h="{{ $data->sub_kategori2 }}" data-nilaih="{{ $data->nilai }}"
-                                data-ratingh="{{ $data->ranting }}" data-hargah="{{ $data->harga }}"
-                                data-promoh="{{ $data->harga_promo }}" data-durasih="{{ $data->durasi_waktu }}"
-                                data-keteranganh="{{ $data->keterangan }}" data-desc="{{ $data->description }}" class="passrental">
+                            <a data-bs-toggle="modal" data-kode="{{ $data->kode_produk }}"
+                                data-logo="{{ $data->logo }}" data-img1="{{ $data->img1 }}"
+                                data-img2="{{ $data->img2 }}" data-img3="{{ $data->img3 }}"
+                                data-img4="{{ $data->img4 }}" data-img5="{{ $data->img5 }}"
+                                data-brand="{{ $data->nama_brand }}" data-tipe="{{ $data->tipe_kendaraan }}" data-alamat="{{ $data->alamat }}"
+                                data-kategori="{{ $data->nama_kategori }}" data-idkat="{{ $data->id_kategori }}" data-subkategori1="{{ $data->sub_kategori1 }}"
+                                data-subkategori2="{{ $data->sub_kategori2 }}" data-nilai="{{ $data->nilai }}"
+                                data-rating="{{ $data->ranting }}" data-harga="{{ $data->harga }}"
+                                data-promo="{{ $data->harga_promo }}" data-durasi="{{ $data->durasi_waktu }}"
+                                data-keterangan="{{ $data->keterangan }}" data-desc="{{ $data->description }}" 
+                                data-nation="{{ $data->countries }}" data-district="{{ $data->district }}" data-subdistrict="{{ $data->subdistrict }}"
+                                class="passrental">
                                 <button type="button" data-bs-toggle="modal" data-bs-target="#Myedit"
                                     class="btn text-white mb-0" style="background: #1592E6;">
                                     Detail
@@ -94,7 +95,7 @@
 
 
                             <button class="btn btn-danger mb-0">
-                                Hapus
+                                apus
                             </button>
 
                         </form>

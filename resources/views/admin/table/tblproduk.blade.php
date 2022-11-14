@@ -30,7 +30,7 @@
                                     <div class="card-body produk p-3">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="ms-2 c-details">
-                                                <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i class="bi bi-geo-alt"></i> {{ $data->prov }} | {{ $data->kab }}</h6>
+                                                <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i class="bi bi-geo-alt"></i> {{ $data->countries }} | {{ $data->district }}</h6>
                                                 <div class="mt-2">
                                                     <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">{!! Str::words($data->nama_brand, 4, ' ...') !!}</h4>
 
@@ -64,8 +64,8 @@
                                                 <a data-bs-toggle="modal" data-kodeh="{{ $data->kode_produk }}" data-logoh="{{ $data->logo }}" data-img1h="{{ $data->img1 }}"
                                                     data-img2h="{{ $data->img2 }}" data-img3h="{{ $data->img3 }}" data-img4h="{{ $data->img4 }}" data-img5h="{{ $data->img5 }}" 
                                                     data-brandh="{{ $data->nama_brand }}" data-alamat="{{ $data->alamat }}" data-kategori="{{ $data->nama_kategori }}" data-idkat="{{ $data->id_kategori }}"
-                                                    data-sub1="{{ $data->sub_kategori1 }}" data-sub2="{{ $data->sub_kategori2 }}" data-prov="{{ $data->prov }}" 
-                                                    data-kab="{{ $data->kab }}" data-kec="{{ $data->kec }}" data-nilai="{{ $data->nilai }}" data-rating="{{ $data->ranting }}" data-harga="{{ $data->harga }}"
+                                                    data-sub1="{{ $data->sub_kategori1 }}" data-sub2="{{ $data->sub_kategori2 }}" data-nation="{{ $data->countries }}" 
+                                                    data-district="{{ $data->district }}" data-subdistrict="{{ $data->subdistrict }}" data-nilai="{{ $data->nilai }}" data-rating="{{ $data->ranting }}" data-harga="{{ $data->harga }}"
                                                     data-promoh="{{ $data->harga_promo }}" data-durasi="{{ $data->durasi_waktu }}" data-keterangan="{{ $data->keterangan }}" data-desc="{{ $data->description }}" data-fa1="{{ $data->fasilitas1 }}" 
                                                     data-fa2="{{ $data->fasilitas2 }}" data-fa3="{{ $data->fasilitas3 }}" data-fa4="{{ $data->fasilitas4 }}" data-fa5="{{ $data->fasilitas5 }}" 
                                                     data-fa6="{{ $data->fasilitas6 }}" class="passHotel">
@@ -94,7 +94,7 @@
                                     <div class="card-body produk p-3">
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="ms-2 c-details">
-                                                <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i class="bi bi-geo-alt"></i> {!! Str::words($data->terminal1, 2, ' ...') !!} | Prov. {{ $data->keberangkatan }}</h6>
+                                                <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i class="bi bi-geo-alt"></i> {!! Str::words($data->terminal1, 3, ' ...') !!}</h6>
                                                 <div class="mt-2">
                                                     <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">{!! Str::words($data->nama_brand, 4,' ...') !!}</h4>
 
@@ -103,7 +103,7 @@
                                                     <div class="d-flex">
                                                         <div>
                                                             <p class="mb-0" style="font-size: 12px;">Keberangkatan</p>
-                                                            <p style="font-size: 13px;"><i class="fa-solid fa-plane-departure"></i> {{ $data->keberangkatan }}</p>
+                                                            <p style="font-size: 13px;"><i class="fa-solid fa-plane-departure"></i> {!! Str::words($data->keberangkatan, 1,' ...') !!}</p>
                                                         </div>
         
                                                         <div class="mx-3 mt-2">
@@ -112,7 +112,7 @@
         
                                                         <div>
                                                             <p class="mb-0" style="font-size: 12px;">Tujuan</p>
-                                                            <p style="font-size: 13px;"><i class="fa-solid fa-plane-arrival"></i> {{ $data->tujuan }}</p>
+                                                            <p style="font-size: 13px;"><i class="fa-solid fa-plane-arrival"></i> {!! Str::words($data->tujuan, 1,' ...') !!}</p>
                                                         </div>
                                                     </div>
 

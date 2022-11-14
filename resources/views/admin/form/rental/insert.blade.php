@@ -72,29 +72,34 @@
 
                             <!------------------------------------Alamat Produk Start------------------------------------------->
                             <div class="mb-1 col-md-12">
-                                <label class="form-label text-dark">Provinsi</label>
-                                <select id="inprov" class="form-control text-capitalize" name="prov" required>
-                                    <option selected>-- Pilih Provinsi --</option>
-                                    @foreach($prov as $prov)
-                                        <option value="{{ $prov->provinsi }}">Provinsi {{ $prov->provinsi }}</option>
+                                <label class="form-label text-dark">Negara</label>
+                                <select id="innegara" class="form-control text-capitalize" name="countries"
+                                    required>
+                                    <option selected>Pilih Negara</option>
+                                    @foreach($nation as $negara)
+                                    <option value="{{ $negara->nation }}">{{ $negara->nation }}
+                                    </option>
                                     @endforeach
                                 </select>
                             </div>
 
                             <div class="row">
                                 <div class="mb-1 col-md-6">
-                                    <label class="form-label text-dark">Kabupaten</label>
-                                    <select id="inkab" class="form-control text-capitalize" name="kab" required>
-                                        <option selected disabled>-- Pilih Kabupaten --</option>
+                                    <label class="form-label text-dark">Wilayah Hotel</label>
+                                    <select id="inwilayah" class="form-control text-capitalize" name="district"
+                                        required>
+                                        <option selected>Wilayah Hotel</option>
                                     </select>
                                 </div>
 
                                 <div class="mb-1 col-md-6">
-                                    <label class="form-label text-dark">Kecamatan</label>
-                                    <select id="inkec" class="form-control text-capitalize" name="kec" required>
-                                        <option selected disabled>-- Pilih Kecamatan --</option>
+                                    <label class="form-label text-dark">Daerah Hotel</label>
+                                    <select id="indaerah" class="form-control text-capitalize" name="subdistrict"
+                                        required>
+                                        <option selected>Wilayah Hotel</option>
                                     </select>
                                 </div>
+                                <label class="text-info mb-0" style="font-size: 12px;">!Daerah dan wilayah sesuai dengan opsi wilayah</label>
                             </div>
                             <!------------------------------------Alamat Produk END------------------------------------------->
                         </div>
@@ -137,7 +142,7 @@
                 <div class="col-md-12 mb-3">
                     <label for="description" class="form-label"
                         style="font-size: 18px;">Description (EN)</label>
-                    <input id="descreption" type="hidden" name="descreption">
+                    <input id="descreption" type="hidden" name="description">
                     <trix-editor input="descreption"></trix-editor>
                 </div>
 
@@ -299,68 +304,58 @@
         } 
     });
 
+    
     //Wilayah
-    $('#inprov').change(function(){
-        var kab = $(this).val();    
-
-        if(kab){
+    $('#innegara').change(function(){
+        var district = $(this).val();    
+        if(district){
             $.ajax({
                 type:"GET",
-                url: '/getProv/'+kab,
+                url: '/getNegara/'+district,
                 dataType: 'JSON',
                 success:function(data){        
-
-                    if(data){
-                        $("#inkab").empty();
-                        $("#inkab").append('<option>-- Pilih Kabupaten --</option>');
-                        $("#inkec").empty();
-                        $("#inkec").append('<option>-- Pilih Kecamatan --</option>');
-
-                        $.each(data,function(key, kab){
-                            $("#inkab").append('<option value="'+kab.kab+'">Kabupaten '+kab.kab+'</option>');
+                    if(data){                        
+                        $.each(data,function(key, district){
+                            $("#inwilayah").append('<option value="'+district.district+'">'+district.district+'</option>');
                         });
                     }else{
-                        $("#inkab").empty();
-                        $("#inkec").empty();
+                        $("#inwilayah").empty();
+                        $("#inwilayah").append('<option>Wilayah Destinasi</option>');
                     }
                 }
             });
         }else{
-            $("#inkab").empty();
-            $("#inkec").empty();
+            $("#inwilayah").empty();
+            $("#inwilayah").append('<option>Wilayah Destinasi</option>');
         } 
         
     });
 
 
-    $('#inkab').change(function(){
-        var kec = $(this).val();    
-
-        if(kec){
+    $('#inwilayah').change(function(){
+        var subdistrict = $(this).val();    
+        if(subdistrict){
             $.ajax({
                 type:"GET",
-                url: '/getKab/'+kec,
+                url: '/getWilayah/'+subdistrict,
                 dataType: 'JSON',
                 success:function(data){        
-
-                    if(data){
-                        $("#inkec").empty();
-                        $("#inkec").append('<option>-- Pilih Kecamatan --</option>');
-
-                        $.each(data,function(key, kec){
-                            $("#inkec").append('<option value="'+kec.kec+'">Kecamatan '+kec.kec+'</option>');
+                    if(data){                        
+                        $.each(data,function(key, subdistrict){
+                            $("#indaerah").append('<option value="'+subdistrict.subdistrict+'">'+subdistrict.subdistrict+'</option>');
                         });
                     }else{
-                        $("#inkec").empty();
+                        $("#indaerah").empty();
+                        $("#indaerah").append('<option>Daerah Hotel</option>');
                     }
                 }
             });
         }else{
-            $("#inkec").empty();
+            $("#indaerah").empty();
+            $("#indaerah").append('<option>Daerah Hotel</option>');
         } 
         
     });
- 
 </script>
 
 

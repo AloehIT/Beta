@@ -100,37 +100,41 @@
 
                                             <!------------------------------------Alamat Produk Start------------------------------------------->
                                             <div class="mb-1 col-md-12">
-                                                <label class="form-label text-dark">Provinsi</label>
-                                                <select id="upprov" class="form-control sendprov" required>
-                                                    <option selected>-- Pilih Provinsi --</option>
-                                                    @foreach($prov as $prov)
-                                                        <option value="{{ $prov->provinsi }}">Provinsi {{ $prov->provinsi }}</option>
+                                                <label class="form-label text-dark">Negara</label>
+                                                <select id="upnegara" class="form-control text-capitalize sendnation"
+                                                    required>
+                                                    <option selected>Pilih Negara</option>
+                                                    @foreach($nation as $negara)
+                                                    <option value="{{ $negara->nation }}">{{ $negara->nation }}
+                                                    </option>
                                                     @endforeach
                                                 </select>
-                                                <p style="font-size: 11px;" class="mb-0 text-capitalize">Prov: <span id="beforeprov"></span></p>
-                                                <input type="hidden" class="prov" name="prov" id="prov">
+
+                                                <p style="font-size: 11px;" class="mb-0 text-capitalize">Negara: <span id="beforenation"></span></p>
+                                                <input type="hidden" class="nation" name="countries" id="nation">
                                             </div>
                 
                                             <div class="row">
                                                 <div class="mb-1 col-md-6">
-                                                    <label class="form-label text-dark">Kabupaten</label>
-                                                    <select id="upkab" class="form-control sendkab" required>
-                                                        <option selected disabled>-- Pilih Kabupaten --</option>
+                                                    <label class="form-label text-dark">Wilayah Hotel</label>
+                                                    <select id="upwilayah" class="form-control text-capitalize" name="district"
+                                                        required>
+                                                        <option selected>Wilayah Hotel</option>
                                                     </select>
-
-                                                    <p style="font-size: 11px;" class="mb-0 text-capitalize">Kab: <span id="beforekab"></span></p>
-                                                    <input type="hidden" class="kab" name="kab" id="kab">
+                                                    <p style="font-size: 11px;" class="mb-0 text-capitalize">Wilayah: <span id="beforedistrict"></span></p>
+                                                    <input type="hidden" class="district" name="district" id="district">
                                                 </div>
                 
                                                 <div class="mb-1 col-md-6">
-                                                    <label class="form-label text-dark">Kecamatan</label>
-                                                    <select id="upkec" class="form-control sendkec" required>
-                                                        <option selected disabled>-- Pilih Kecamatan --</option>
+                                                    <label class="form-label text-dark">Daerah Hotel</label>
+                                                    <select id="updaerah" class="form-control text-capitalize" name="subdistrict"
+                                                        required>
+                                                        <option selected>Wilayah Hotel</option>
                                                     </select>
-                                                    
-                                                    <p style="font-size: 11px;" class="mb-0 text-capitalize">Kec: <span id="beforekec"></span></p>
-                                                    <input type="hidden" class="kec" name="kec" id="kec">
+                                                    <p style="font-size: 11px;" class="mb-0 text-capitalize">Daerah: <span id="beforesubdistrict"></span></p>
+                                                    <input type="hidden" class="subdistrict" name="subdistrict" id="subdistrict">
                                                 </div>
+                                                <label class="text-info mb-0" style="font-size: 12px;">!Daerah dan wilayah sesuai dengan opsi wilayah</label>
                                             </div>
                                             <!------------------------------------Alamat Produk END------------------------------------------->
                                         </div>
@@ -306,22 +310,6 @@
         $('.sub2').val(subkategori);
     });
 
-    //send wilayah
-    $('.sendprov').on('change', function(){
-        const provinsi = $('.sendprov').val();
-        $('.prov').val(provinsi);
-    });
-
-    $('.sendkab').on('change', function(){
-        const subkategori = $('.sendkab').val();
-        $('.kab').val(subkategori);
-    });
-
-    $('.sendkec').on('change', function(){
-        const subkategori = $('.sendkec').val();
-        $('.kec').val(subkategori);
-    });
-
 
 
     $('#upkategori1').change(function(){
@@ -377,66 +365,75 @@
 
 
     //Wilayah
-    $('#upprov').change(function(){
-        var upkab = $(this).val();    
+    //send wilayah
+    $('.sendnation').on('change', function(){
+        const nation = $('.sendnation').val();
+        $('.nation').val(nation);
+    });
 
-        if(upkab){
+    $('.senddistrict').on('change', function(){
+        const district = $('.senddistrict').val();
+        $('.district').val(district);
+    });
+
+    $('.sendsubdistrict').on('change', function(){
+        const subdistrict = $('.sendsubdistrict').val();
+        $('.subdistrict').val(subdistrict);
+    });
+
+
+    $('#upnegara').change(function(){
+        var district = $(this).val();    
+        if(district){
             $.ajax({
                 type:"GET",
-                url: '/getProv/'+upkab,
+                url: '/getNegara/'+district,
                 dataType: 'JSON',
                 success:function(data){        
-
-                    if(data){
-                        $("#upkab").empty();
-                        $("#upkab").append('<option>-- Pilih Kabupaten --</option>');
-                        $("#upkec").empty();
-                        $("#upkec").append('<option>-- Pilih Kecamatan --</option>');
-
-                        $.each(data,function(key, kab){
-                            $("#upkab").append('<option value="'+kab.kab+'">Kabupaten '+kab.kab+'</option>');
+                    if(data){                        
+                        $.each(data,function(key, district){
+                            $("#upwilayah").append('<option value="'+district.district+'">'+district.district+'</option>');
                         });
                     }else{
-                        $("#upkab").empty();
-                        $("#upkec").empty();
+                        $("#upwilayah").empty();
+                        $("#upwilayah").append('<option>Wilayah Destinasi</option>');
                     }
                 }
             });
         }else{
-            $("#upkab").empty();
-            $("#upkec").empty();
+            $("#upwilayah").empty();
+            $("#upwilayah").append('<option>Wilayah Destinasi</option>');
         } 
         
     });
 
 
-    $('#upkab').change(function(){
-        var kec = $(this).val();    
-
-        if(kec){
+    $('#upwilayah').change(function(){
+        var subdistrict = $(this).val();    
+        if(subdistrict){
             $.ajax({
                 type:"GET",
-                url: '/getKab/'+kec,
+                url: '/getWilayah/'+subdistrict,
                 dataType: 'JSON',
                 success:function(data){        
-
-                    if(data){
-                        $("#upkec").empty();
-                        $("#upkec").append('<option>-- Pilih Kecamatan --</option>');
-
-                        $.each(data,function(key, kec){
-                            $("#upkec").append('<option value="'+kec.kec+'">Kecamatan '+kec.kec+'</option>');
+                    if(data){                        
+                        $.each(data,function(key, subdistrict){
+                            $("#updaerah").append('<option value="'+subdistrict.subdistrict+'">'+subdistrict.subdistrict+'</option>');
                         });
                     }else{
-                        $("#upkec").empty();
+                        $("#updaerah").empty();
+                        $("#updaerah").append('<option>Daerah Hotel</option>');
                     }
                 }
             });
         }else{
-            $("#upkec").empty();
+            $("#updaerah").empty();
+            $("#updaerah").append('<option>Daerah Hotel</option>');
         } 
         
     });
+    
+    
 
 
 
@@ -457,12 +454,6 @@
      var idkat = $(this).data('idkat');
      var subkategori1 = $(this).data('sub1');
      var subkategori2 = $(this).data('sub2');
-     //kategori
-    
-     //kategori
-     var prov = $(this).data('prov');
-     var kec = $(this).data('kec');
-     var kab = $(this).data('kab');
      //kategori
 
      var brandh = $(this).data('brandh');
@@ -487,6 +478,9 @@
      var keterangan = $(this).data('keterangan');
      var desc = $(this).data('desc');
 
+     var nation = $(this).data('nation');
+     var district = $(this).data('district');
+     var subdistrict = $(this).data('subdistrict');
 
 
      $(".modal-body #kodeh").val( kodeh );
@@ -546,14 +540,13 @@
      $(".modal-body #beforesub1").text( subkategori1 );
      $(".modal-body #beforesub2").text( subkategori2 );
 
-
-     $(".modal-body #prov").val( prov );
-     $(".modal-body #kab").val( kab );
-     $(".modal-body #kec").val( kec );
+     $(".modal-body #nation").val( nation );
+     $(".modal-body #district").val( district );
+     $(".modal-body #subdistrict").val( subdistrict );
      
-     $(".modal-body #beforeprov").text( prov );
-     $(".modal-body #beforekab").text( kab );
-     $(".modal-body #beforekec").text( kec );
+     $(".modal-body #beforenation").text( nation );
+     $(".modal-body #beforedistrict").text( district );
+     $(".modal-body #beforesubdistrict").text( subdistrict );
 
     });
  

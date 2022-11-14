@@ -62,17 +62,28 @@
 
                         <!------------------------------------Alamat Produk Start------------------------------------------->
                         <div class="mb-1 col-md-12">
-                            <label class="form-label text-dark">Wilayah</label>
-                            <select id="upprov" class="form-control text-capitalize sendwilayah"
+                            <label class="form-label text-dark">Negara</label>
+                            <select id="upnegara" class="form-control text-capitalize sendnation"
                                 required>
-                                <option selected>Pilih Wilayah</option>
-                                @foreach($prov as $prov)
-                                <option value="{{ $prov->provinsi }}">Wilayah {{ $prov->provinsi }}
+                                <option selected>Pilih Negara</option>
+                                @foreach($nation as $negara)
+                                <option value="{{ $negara->nation }}">{{ $negara->nation }}
                                 </option>
                                 @endforeach
                             </select>
-                            <p style="font-size: 11px;" class="mb-0 text-capitalize">Wilayah: <span id="beforewilayah"></span></p>
+                            <p style="font-size: 11px;" class="mb-0 text-capitalize">Negara: <span id="beforenation"></span></p>
+                            <input type="hidden" class="nation text-capitalize" name="countries" id="nation">
+                        </div>
+
+                        <div class="mb-1 col-md-12">
+                            <label class="form-label text-dark">Wilayah Destinasi</label>
+                            <select id="upwilayah" class="form-control text-capitalize sendwilayah"
+                                required>
+                                <option selected>Pilih Destinasi</option>
+                            </select>
+                            <p style="font-size: 11px;" class="mb-0 text-capitalize">Negara: <span id="beforewilayah"></span></p>
                             <input type="hidden" class="wilayah text-capitalize" name="wilayah" id="wilayah">
+                            <label class="text-info mb-0" style="font-size: 12px;">!Daerah sesuai dengan opsi Negara</label>
                         </div>
 
                         <div class="mb-1 col-md-12">
@@ -82,23 +93,6 @@
                                     id="basic-addon1"><i class="bi bi-geo-alt-fill"></i></span>
                                 <input type="text" class="form-control px-3" name="destinasi"
                                     placeholder="Tujuan destinasi" required autocomplete="off" id="destinasi">
-                            </div>
-                        </div>
-
-                        <div class="mb-3 col-md-12">
-                            <label class="form-label text-dark">Penilaian/Rating</label>
-                            <div class="input-group">
-                                <span class="input-group-text" style="background: #D6D6D6;"
-                                    id="basic-addon1"><i class="bi bi-star-fill"></i>
-                                </span>
-                                <select class="form-control px-3" name="ranting" id="rate" required>
-                                    <option selected disabled>-- Pilih Rating --</option>
-                                    <option value="5">Bintang 5</option>
-                                    <option value="4">Bintang 4</option>
-                                    <option value="3">Bintang 3</option>
-                                    <option value="2">Bintang 2</option>
-                                    <option value="1">Bintang 1</option>
-                                </select>
                             </div>
                         </div>
                         <!------------------------------------Alamat Produk END------------------------------------------->
@@ -189,6 +183,23 @@
                 <div style="border-bottom: 1px solid rgba(204, 204, 204, 0.762); "></div>
             </div>
 
+            <div class="mb-3 col-md-12">
+                <label class="form-label text-dark">Penilaian/Rating</label>
+                <div class="input-group">
+                    <span class="input-group-text" style="background: #D6D6D6;"
+                        id="basic-addon1"><i class="bi bi-star-fill"></i>
+                    </span>
+                    <select class="form-control px-3" name="ranting" id="rate" required>
+                        <option selected disabled>-- Pilih Rating --</option>
+                        <option value="5">Bintang 5</option>
+                        <option value="4">Bintang 4</option>
+                        <option value="3">Bintang 3</option>
+                        <option value="2">Bintang 2</option>
+                        <option value="1">Bintang 1</option>
+                    </select>
+                </div>
+            </div>
+
             <div class="col-md-12 mb-1">
                 <label class="form-label text-dark">Keterangan singkat (ID)</label>
                 <input id="upketerangan" type="hidden" name="keterangan" class="ket">
@@ -228,14 +239,14 @@
 
             <div class="col-md-12 mb-1">
                 <label class="form-label text-dark">Runtatan Acara (ID)</label>
-                <input id="acara" type="hidden" name="acara" class="acara">
-                <trix-editor input="acara" class="acara"></trix-editor>
+                <input id="upacara" type="hidden" name="acara" class="acara">
+                <trix-editor input="upacara" class="acara"></trix-editor>
             </div>
 
             <div class="col-md-12 mb-3">
                 <label class="form-label text-dark">Event (EN)</label>
-                <input id="program" type="hidden" name="program" class="program">
-                <trix-editor input="program" class="program"></trix-editor>
+                <input id="upprogram" type="hidden" name="program" class="program">
+                <trix-editor input="upprogram" class="program"></trix-editor>
             </div>
         </div>
         <!--img upload--->
@@ -333,42 +344,35 @@
             $("#upsub2").empty();
         } 
     });
+
     //Wilayah
-    $('#upprov').change(function(){
-        var kab = $(this).val();    
-        if(kab){
+    $('#upnegara').change(function(){
+        var district = $(this).val();    
+        if(district){
             $.ajax({
                 type:"GET",
-                url: '/getProv/'+kab,
+                url: '/getNegara/'+district,
                 dataType: 'JSON',
                 success:function(data){        
-                    if(data){
-                        $("#uptransportasi").empty();
-                        $("#uppenginapan").empty();
-                        $("#uppenginapan").append('<option>Pilih Penginapan</option>');
-                        $("#uptransportasi").append('<option>Pilih Transportasi</option>');
-                        
-                        $.each(data,function(key, kab){
-                            $("#inkab").append('<option value="'+kab.kab+'">Daerah '+kab.kab+'</option>');
+                    if(data){                        
+                        $.each(data,function(key, district){
+                            $("#upwilayah").append('<option value="'+district.district+'">Daerah '+district.district+'</option>');
                         });
                     }else{
-                        $("#uptransportasi").empty();
-                        $("#uppenginapan").empty();
-                        $("#uppenginapan").append('<option>Pilih Penginapan</option>');
-                        $("#uptransportasi").append('<option>Pilih Transportasi</option>');
+                        $("#upwilayah").empty();
+                        $("#upwilayah").append('<option>Wilayah Destinasi</option>');
                     }
                 }
             });
         }else{
-            $("#uptransportasi").empty();
-            $("#uppenginapan").empty();
-            $("#uppenginapan").append('<option>Pilih Penginapan</option>');
-            $("#uptransportasi").append('<option>Pilih Transportasi</option>');
+            $("#upwilayah").empty();
+            $("#upwilayah").append('<option>Wilayah Destinasi</option>');
         } 
         
     });
+
     //produk
-    $('#upprov').change(function(){
+    $('#upwilayah').change(function(){
         var hotel = $(this).val();    
         if(hotel){
             $.ajax({
@@ -393,7 +397,7 @@
         } 
         
     });
-    $('#upprov').change(function(){
+    $('#upwilayah').change(function(){
         var transport = $(this).val();    
         if(transport){
             $.ajax({
@@ -416,7 +420,7 @@
             $("#uptransportasi").empty();
         } 
     });
-    $('#upprov').change(function(){
+    $('#upwilayah').change(function(){
         var kendaraan = $(this).val();    
         if(kendaraan){
             $.ajax({
@@ -436,80 +440,11 @@
                 }
             });
         }else{
-            $("#upkendaraan").empty();
+            $("#kendaraan").empty();
         } 
         
     });
-    //harga
-    $('.upcekharga').change(function(){
-        var produk = $(this).val();    
-        if(produk){
-            $.ajax({
-                type:"GET",
-                url: '/getProduk/'+produk,
-                dataType: 'JSON',
-                success:function(data){        
-                    if(data){
-                        $("#uphargap").val();
-                        $.each(data,function(key, produk){
-                            $("#uphargap").val(produk.harga)
-                        });
-                    }else{
-                        $("#uphargap").val();
-                    }
-                }
-            });
-        }else{
-            $("#uphargap").val();
-        } 
-        
-    });
-    $('.upcekharga1').change(function(){
-        var produk = $(this).val();    
-        if(produk){
-            $.ajax({
-                type:"GET",
-                url: '/getProduk/'+produk,
-                dataType: 'JSON',
-                success:function(data){        
-                    if(data){
-                        $("#uphargat").empty();
-                        $.each(data,function(key, produk){
-                            $("#uphargat").val(produk.harga)
-                        });
-                    }else{
-                        $("#uphargat").empty();
-                    }
-                }
-            });
-        }else{
-            $("#uphargat").empty();
-        } 
-        
-    });
-    $('.upcekharga2').change(function(){
-        var rental = $(this).val();    
-        if(rental){
-            $.ajax({
-                type:"GET",
-                url: '/getRental/'+rental,
-                dataType: 'JSON',
-                success:function(data){        
-                    if(data){
-                        $("#uphargak").empty();
-                        $.each(data,function(key, rental){
-                            $("#uphargak").val(rental.harga)
-                        });
-                    }else{
-                        $("#uphargak").empty();
-                    }
-                }
-            });
-        }else{
-            $("#uphargak").empty();
-        } 
-        
-    });
+
 </script>
 
 

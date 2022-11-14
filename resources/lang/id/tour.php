@@ -20,7 +20,7 @@ return [
 
     //button 
     'btnpesan' => 'Pesan Sekarang',
-    'btnkeranjang' => 'Tambha Keranjang',
+    'btnkeranjang' => 'Tambah Keranjang',
 
     //nav
     'nav_tour' => 'Paket Tour',

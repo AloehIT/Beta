@@ -14,28 +14,21 @@ class WilayahModel extends Model
 
 
     //view wilayah in page home content::START
-    public function prov() {
-        return DB::table('master_prov')
+    public function nation() {
+        return DB::table('location')
         ->paginate(10);
     }
 
-    public function kab() {
-        return DB::table('master_kab')
-        ->join('master_prov', 'master_prov.idprov', '=', 'master_kab.idprov')
+    public function district() {
+        return DB::table('district')
+        ->join('location', 'location.idnation', '=', 'district.idnation')
         ->get();
     }
 
-    public function kec() {
-        return DB::table('master_kec')
-        ->join('master_prov', 'master_prov.idprov', '=', 'master_kec.idprov')
-        ->join('master_kab', 'master_kab.idkab', '=', 'master_kec.idkab')
-        ->get();
-    }
-
-    public function location() {
-        return DB::table('master_kec')
-        ->join('master_prov', 'master_prov.provinsi', '=', 'master_kec.prov')
-        // ->join('master_kab', 'master_kab.kab.', '=', 'master_kec.kab')
+    public function subdistrict() {
+        return DB::table('subdistrict')
+        ->join('location', 'location.idnation', '=', 'subdistrict.idnation')
+        ->join('district', 'district.iddistrict', '=', 'subdistrict.iddistrict')
         ->get();
     }
     //view wilayah in page home content::END

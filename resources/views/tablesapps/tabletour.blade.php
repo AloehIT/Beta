@@ -49,7 +49,7 @@
                                                             {!! Str::words($data->keterangan, 10,' ...') !!}
                                                         </article>
                                                     @endif
-                                                @elseif(app()->getLocale()=='en')
+                                                @else
                                                     @if($data->description == "")
                                                         <article class="text-dark mb-4 keterangan"
                                                             style=" font-size: 13px; text-align: left; line-height: 18px;">

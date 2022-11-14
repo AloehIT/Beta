@@ -20,17 +20,17 @@
                 <div class="container">
                     <div class="slide-caption col-lg-4 col-md-12">
                         @if(app()->getLocale()=='id')
-                        @if($item->judul_slider == "")
-                        <h2 class="slide-title">{{ $item->judul_slider }}</h2>
+                            @if($item->judul_slider == "")
+                            <h2 class="slide-title">{{ $item->judul_slider }}</h2>
+                            @else
+                            <h2 class="slide-title">Judul tidak terdaftar dalam bahasa ini</h2>
+                            @endif
                         @else
-                        <h2 class="slide-title">Judul tidak terdaftar dalam bahasa ini</h2>
-                        @endif
-                        @elseif(app()->getLocale()=='en')
-                        @if($item->title_slider == "")
-                        <h2 class="slide-title">{{ $item->title_slider }}</h2>
-                        @else
-                        <h2 class="slide-title">Title not registered in this language.</h2>
-                        @endif
+                            @if($item->title_slider == "")
+                            <h2 class="slide-title">{{ $item->title_slider }}</h2>
+                            @else
+                            <h2 class="slide-title">Title not registered in this language.</h2>
+                            @endif
                         @endif
 
                         @if(app()->getLocale()=='id')
@@ -39,7 +39,7 @@
                         @else
                         <article>Deskripsi slider tidak terdaftar dalam bahasa ini.</article>
                         @endif
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         @if($item->description_slider == "")
                         <article>{!! Str::words($item->description_slider, 50, ' ...') !!}</article>
                         @else
@@ -60,7 +60,7 @@
                         @else
                         <h2 class="slide-title">Judul tidak terdaftar dalam bahasa ini</h2>
                         @endif
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         @if($item->title_slider == "")
                         <h2 class="slide-title">{{ $item->title_slider }}</h2>
                         @else
@@ -74,7 +74,7 @@
                         @else
                         <article>Deskripsi slider tidak terdaftar dalam bahasa ini.</article>
                         @endif
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         @if($item->description_slider == "")
                         <article>{!! Str::words($item->description_slider, 50, ' ...') !!}</article>
                         @else
@@ -94,7 +94,7 @@
                         @else
                         <h2 class="slide-title">Judul tidak terdaftar dalam bahasa ini</h2>
                         @endif
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         @if($item->title_slider == "")
                         <h2 class="slide-title">{{ $item->title_slider }}</h2>
                         @else
@@ -108,7 +108,7 @@
                         @else
                         <article>Deskripsi slider tidak terdaftar dalam bahasa ini.</article>
                         @endif
-                        @elseif(app()->getLocale()=='en')
+                        @else
                         @if($item->description_slider == "")
                         <article>{!! Str::words($item->description_slider, 50, ' ...') !!}</article>
                         @else
@@ -279,7 +279,7 @@
                                                     {!! Str::words($data->keterangan, 10,' ...') !!}
                                                 </article>
                                                 @endif
-                                                @elseif(app()->getLocale()=='en')
+                                                @else
                                                 @if($data->description == "")
                                                 <article class="text-dark mb-4 keterangan"
                                                     style=" font-size: 13px; text-align: left; line-height: 18px;">
@@ -402,7 +402,7 @@
                                         <div class="d-flex flex-row align-items-center">
                                             <div class="ms-2 c-details">
                                                 <h6 class="mb-0 text-secondary text-capitalize" style="font-size: 10px;"><i
-                                                        class="bi bi-geo-alt"></i>{{ $data->prov }} | {{ $data->kab }}</h6>
+                                                        class="bi bi-geo-alt"></i>{{ $data->countries }} | {{ $data->district }}</h6>
                                                 <div class="mt-2">
                                                     <h4 class="heading col-12 text-dark text-capitalize" style="font-size: 15px;">
                                                         {!! Str::words($data->nama_brand, 4,' ...') !!}</h4>
@@ -769,19 +769,15 @@
             <div class="row mt-5">
                 <div class="col-md-6">
                     <h2 class="text-title text-center">{{ __('home.tentangkami') }}</h2>
-                    <figure class="featured-image">
-                        <iframe class="img-fluid" style="width: 100%; height: 270px;"
-                            src="https://www.youtube.com/watch?v=GUp0gKZFQoc&feature=share&utm_source=EJGixIgBCJiu2KjB4oSJEQ">
-                        </iframe>
-                    </figure>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/7Gy11LgmuUA?&autoplay=1" title="YouTube video" allowfullscreen></iframe>
+                    </div>    
                 </div>
                 <div class="col-md-6">
-                    <h2 class="text-title text-center">{{ __('home.tuttorial') }}</h2>
-                    <figure class="featured-image">
-                        <iframe class="img-fluid" style="width: 100%; height: 270px;"
-                            src="https://www.youtube.com/watch?v=uyvw531U6Uc&feature=share&utm_source=EJGixIgBCJiu2KjB4oSJEQ">
-                        </iframe>
-                    </figure>
+                    <h2 class="text-title text-center">{{ __('home.tutorial') }}</h2>
+                    <div class="ratio ratio-16x9">
+                        <iframe src="https://www.youtube.com/embed/7Gy11LgmuUA?&autoplay=1" title="YouTube video" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
@@ -801,7 +797,7 @@
                     <p class="second-title mb-0">Kiano Travel</p>
                     @if(app()->getLocale()=='id')
                     <h3 class="text-title">Merek Kemitraan</h3>
-                    @elseif(app()->getLocale()=='en')
+                    @else
                     <h3 class="text-title">Brand Partnership</h3>
                     @endif
                 </div>
@@ -810,10 +806,10 @@
                 <div class="owl-carousel owl-2">
 
                     @forelse($patner as $data)
-                    <div class="media-29101">
+                    <div class="media-2910">
                         <a href="{{ $data->links }}" target="_blank"><img
                                 src="{{ asset('library/patner/'.$data->img_patner) }}" alt="Image"
-                                class="img-fluid"></a>
+                                class="img-fluid m-auto"></a>
                     </div>
                     @empty
                     <div class="media-29101">

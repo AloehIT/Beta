@@ -247,7 +247,7 @@
                                                 @else
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>{!! $detail->keterangan !!}</article>
                                                 @endif
-                                            @elseif(app()->getLocale()=='en')
+                                            @else
                                                 @if($detail->description == "")
                                                     <article class="text-secondary bg-transparent" style="border: none; text-align: justify; margin: 0;" readonly>Sorry, it looks like the admin didn't add content information in this section</article>
                                                 @else
